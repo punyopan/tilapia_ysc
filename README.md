@@ -72,6 +72,7 @@ src/tilapia/providers.py       provider-agnostic extraction (Anthropic, DeepSeek
 src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
 src/tilapia/benchmark.py       resolver evaluation: baselines, ablations, fabrication
+src/tilapia/distill.py         teacher -> student training data (only if CSAI)
 src/tilapia/validate.py        recall, lead time, precision, excess
 src/tilapia/spread.py          the two-layer model: water vs human transport
 src/tilapia/experiment.py      out-of-sample test + power check
@@ -79,6 +80,7 @@ src/tilapia/allocate.py        risk map -> survey plan under a fixed budget
 src/tilapia/removal.py         where clearing fish stays cleared vs refills
 data/reference/                gazetteer + ground truth (you assemble these)
 docs/cs-subcategory.md         which CS subcategory, and why (read first)
+docs/csai-track.md             what a real CSAI project would have to be
 docs/cs-track.md               evaluation plan for the resolver component
 docs/abstract.md               title and abstract, proposal + results versions
 docs/how-this-helps.md         what it changes in the real world, measured
@@ -86,7 +88,7 @@ docs/removal.md                "isn't the real problem getting rid of them?"
 docs/why-this-is-science.md    the "isn't this just a map?" answer, with measured power
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
-tests/                         6 suites — run them before trusting anything
+tests/                         7 suites — run them before trusting anything
 ```
 
 ## Setup
@@ -162,6 +164,7 @@ all the value is in not defaulting to the worst-affected areas.
 
 ```
 python tests/test_benchmark.py   #  7/7
+python tests/test_distill.py     #  8/8
 python tests/test_geocode.py     # 10/10
 python tests/test_bakeoff.py     #  7/7
 python tests/test_allocate.py    #  7/7
