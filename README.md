@@ -31,9 +31,11 @@ src/tilapia/validate.py        recall, lead time, precision, excess
 src/tilapia/spread.py          the two-layer model: water vs human transport
 src/tilapia/experiment.py      out-of-sample test + power check
 src/tilapia/allocate.py        risk map -> survey plan under a fixed budget
+src/tilapia/removal.py         where clearing fish stays cleared vs refills
 data/reference/                gazetteer + ground truth (you assemble these)
 docs/abstract.md               title and abstract, proposal + results versions
 docs/how-this-helps.md         what it changes in the real world, measured
+docs/removal.md                "isn't the real problem getting rid of them?"
 docs/why-this-is-science.md    the "isn't this just a map?" answer, with measured power
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
