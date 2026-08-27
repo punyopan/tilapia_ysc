@@ -270,6 +270,36 @@ def rank_next(
     return [int(i) for i in np.argsort(-p) if invaded[i] == 0]
 
 
+def layer_confounding(network: SpreadNetwork) -> float:
+    """Correlation between the two weight matrices. The identifiability number.
+
+    Report this before any model comparison. It says how separable the two
+    hypotheses are *in principle* for this network, independent of how much data
+    you have:
+
+        ~1.0  the layers are the same graph. No amount of data distinguishes
+              them, and a model comparison is meaningless.
+        ~0.0  the layers are independent. The comparison is well posed.
+
+    Prefer this over `discordant_pairs()` as a summary. The pair count detects
+    whether discordance exists but saturates immediately -- in testing it read
+    215 pairs for networks ranging from correlation 0.82 down to -0.04, which
+    is to say it could not tell a nearly-confounded design from a clean one.
+    Use the count to *inspect which* pairs carry the information; use this to
+    decide whether the experiment is worth running.
+
+    For Thailand specifically, expect this to be uncomfortably high: the Chao
+    Phraya delta is simultaneously the canal network and the aquaculture core.
+    Measuring it early is what tells you whether to restrict the analysis to a
+    subset of regions where the layers actually diverge.
+    """
+    water = network.w_water.ravel()
+    human = network.w_human.ravel()
+    if water.std() == 0 or human.std() == 0:
+        return float("nan")
+    return float(np.corrcoef(water, human)[0, 1])
+
+
 def discordant_pairs(
     network: SpreadNetwork, min_gap: float = 0.3
 ) -> list[tuple[str, str, float, float]]:

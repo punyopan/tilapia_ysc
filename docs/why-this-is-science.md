@@ -143,3 +143,61 @@ accompanying experiment tests whether recovery actually tracks that count.
 
 Run the power check with far more replicates before finalising — it is slow but
 free, and an overnight run turns these intervals into something you can defend.
+
+### Does discordance drive power? (25 replicates per cell)
+
+Held the network at 60 nodes and varied how different the two layers are, from
+identical (`alpha=0`) to fully distinct (`alpha=1`):
+
+| alpha | corr(W_water, W_human) | layer recovery | 95% CI | lift over chance |
+|---|---|---|---|---|
+| 0.0 | 0.999 | 0.72 | [0.52, 0.86] | +0.22 |
+| 0.35 | 0.818 | 0.80 | [0.61, 0.91] | +0.30 |
+| 0.70 | 0.303 | 0.80 | [0.61, 0.91] | +0.30 |
+| 1.00 | −0.041 | 0.84 | [0.65, 0.94] | +0.34 |
+
+**Direction supports the hypothesis; the evidence does not yet settle it.**
+Recovery rises monotonically as the layers separate, which is what the
+discordance argument predicts. But every interval overlaps every other, so at
+n=25 per cell this is a suggestive trend, not a demonstrated one. Reporting it
+as established would be exactly the overclaim this document exists to avoid.
+
+Two caveats on the table itself, both worth stating before a judge finds them:
+
+- **`alpha=0` is degenerate.** When the layers are the same graph, "recovered
+  the human layer" has no meaning — the water and human models are
+  interchangeable by construction. The 0.72 there is measuring "a network model
+  won", not "the right layer won". It is a floor, not a result.
+- **The pair count is the wrong summary statistic.** `discordant_pairs()`
+  returned 215 pairs for every network with `alpha > 0`, from correlation 0.82
+  down to −0.04. It detects that discordance exists, not how much. Use
+  `layer_confounding()` — the matrix correlation — as the headline
+  identifiability number, and the pair list to inspect *which* regions carry the
+  information.
+
+### What to run before trusting any of this
+
+The cells above are 10–25 replicates. That is enough to see a direction and not
+enough to defend one. A decisive version is a single overnight job:
+
+```python
+from tilapia.experiment import can_this_experiment_work
+power = can_this_experiment_work(network, truth_spec, theta, seeds, n_replicates=200)
+```
+
+At 200 replicates the intervals narrow to roughly ±0.07, which would separate
+0.72 from 0.84. It costs nothing but wall-clock, and it converts the trend above
+into either a finding or a retraction — both of which are publishable in a
+school report, and only one of which is available if you skip it.
+
+### The design conclusion, stated conservatively
+
+Measure `layer_confounding()` on the real Thai network **first**. If the canal
+network and the aquaculture-trade network turn out to be highly correlated —
+which the geography of the Chao Phraya delta makes likely — then the model
+comparison is weakly identified no matter how much text you mine or how fine
+your spatial resolution, and the honest move is to restrict the analysis to the
+subset of provinces where the layers diverge, and say why.
+
+That is a real methodological decision, made from a measurement, before
+collecting data. It is also the thing that separates this project from a map.

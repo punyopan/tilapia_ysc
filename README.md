@@ -28,8 +28,11 @@ src/tilapia/providers.py       provider-agnostic extraction (Anthropic, DeepSeek
 src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
 src/tilapia/validate.py        recall, lead time, precision, excess
+src/tilapia/spread.py          the two-layer model: water vs human transport
+src/tilapia/experiment.py      out-of-sample test + power check
 data/reference/                gazetteer + ground truth (you assemble these)
 docs/abstract.md               title and abstract, proposal + results versions
+docs/why-this-is-science.md    the "isn't this just a map?" answer, with measured power
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
 tests/test_geocode.py          the Thai matching cases that actually break
