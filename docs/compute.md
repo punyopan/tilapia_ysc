@@ -30,9 +30,6 @@ limitation into a deployment story.
 
 This is the budget line that matters, so estimate it before committing.
 
-Rough arithmetic for a 5,000-document corpus, Thai news articles averaging
-~3,000 input tokens each after the cached system prompt, ~800 output tokens each:
-
 Run `extract.estimate_cost()` before paying for anything — it measures real
 input tokens with `count_tokens` on a sample of your own documents. Thai
 tokenises more heavily than English, so do not estimate from character counts.
@@ -102,3 +99,72 @@ If you have access to NSTDA/ThaiSC resources anyway, the part worth having is
 not the FLOPs. It is the affiliation: access to people who know the DOF data
 landscape, and a plausible route to the aquaculture statistics and buyback
 records that this project would benefit from far more than from compute.
+
+## Using a different provider
+
+The pipeline is provider-agnostic (`providers.py`). Everything carrying
+scientific weight — the schema, the prompt, the geocoder, the validation design
+— is independent of who serves the model; only the call differs.
+
+Two things to weigh before switching, neither of which is about benchmark
+scores:
+
+**Schema enforcement differs, and it costs real money.** The Anthropic path
+constrains generation against the JSON schema, so valid output is the normal
+case. An OpenAI-compatible JSON mode guarantees *valid JSON*, not JSON matching
+your schema — wrong enum values and missing fields happen at some rate, so
+`DeepSeekProvider` retries on validation failure and counts how often. A
+provider 4× cheaper per token that needs 1.3 attempts per document is not 4×
+cheaper, and if the retries cluster on the ambiguous-species documents it is
+worse in a way the price table cannot show you.
+
+**Thai is the actual question.** This task needs fine lexical discrimination in
+Thai specifically — holding ปลาหมอคางดำ apart from a bare ปลาหมอ — plus
+Buddhist-Era date handling. General capability scores do not tell you whether a
+model does that. Your dev set does.
+
+### Deciding it
+
+`bakeoff.py` runs the comparison. Do the free half first:
+
+```python
+from tilapia.bakeoff import run_provider, compare, disagreements, cost_per_record
+
+runs = [run_provider(p, dev_docs) for p in (provider_a, provider_b)]
+compare(runs)                      # no hand labels needed
+queue = disagreements(*runs)       # label these first
+```
+
+`compare()` needs no labelled data and can already disqualify a provider. Watch
+two numbers:
+
+- **Grounding rate** — the share of records whose evidence quote is verbatim in
+  the source. Low means fabrication, and no price makes that acceptable.
+- **`ambiguous_share`** — the share of records marked `named_ambiguous`. A model
+  reporting near-zero is not being decisive, it is collapsing the distinction
+  that keeps the wrong fish out of your corpus. Near-zero is a red flag, not a
+  clean result.
+
+Then hand-label the disagreements rather than a random sample. Where both
+providers agree they are usually both right; where they differ, one is wrong and
+the document is informative. That gets a usable comparison for a fraction of the
+reading, and the disagreement set is itself a map of where this task is hard —
+worth a paragraph in the report.
+
+Finish with `cost_per_record()`, which uses each provider's own reported token
+usage so retries are counted. Cost per validated record is the honest
+comparison; price per million tokens is not.
+
+### Keep the number in perspective
+
+After screening, batching, low effort and dev-set discipline, the whole project
+is around $18. A 4× cheaper provider saves roughly $13 — real, but no longer the
+dominant cost of anything. Spend the effort where it pays: an afternoon of
+provider bake-off is worth it only if you were going to hand-label the dev set
+anyway, which you were.
+
+One genuine non-cost argument for an open-weight model: you can state exactly
+which weights produced your corpus, and a reader could reproduce it without a
+commercial API. That is a legitimate reproducibility claim and worth a sentence
+in the writeup if you go that way. It is also the one scenario where an HPC
+allocation earns its place — see above.

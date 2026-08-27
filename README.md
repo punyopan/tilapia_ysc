@@ -24,6 +24,8 @@ prompts/extraction_th.md       the extraction prompt (versioned — it defines t
 src/tilapia/schema.py          record schemas and the distinctions that matter
 src/tilapia/prefilter.py       free keyword screen — runs before any API call
 src/tilapia/extract.py         documents -> records via Claude (batch + single)
+src/tilapia/providers.py       provider-agnostic extraction (Anthropic, DeepSeek)
+src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
 src/tilapia/validate.py        recall, lead time, precision, excess
 data/reference/                gazetteer + ground truth (you assemble these)
