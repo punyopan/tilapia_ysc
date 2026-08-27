@@ -1,21 +1,35 @@
-# Blackchin tilapia spread in Thailand — occurrence mining
+# Kangdam — where removing blackchin tilapia actually lasts
 
-Reconstructing the invasion record of *Sarotherodon melanotheron* (ปลาหมอคางดำ)
-in Thailand from Thai-language text, to get enough observations to fit and
-validate a spread model.
+**กำจัดตรงไหนถึงจะอยู่ถาวร**
+
+Distinguishing places where clearing *Sarotherodon melanotheron* (ปลาหมอคางดำ)
+is permanent from places where it is recurring maintenance — by mining
+Thai-language text for occurrence records, then fitting a two-layer spread model
+to them.
 
 ## Why
 
-The official record is ~19 provinces with confirmation dates. That is too few
-observations to support a spread model — they are province-level, spatially
-autocorrelated, and ordered in time, and no modelling technique rescues nineteen
-points. The bottleneck is data, not method.
+Removal is the goal. National eradication is not achievable: an open, tidally
+connected canal network across many provinces, a euryhaline species, a
+mouthbrooder with high juvenile survival. Documented eradications of established
+fish happen in closed systems, or very shortly after arrival.
 
-Thai news, government bulletins, and local fishing and farming groups contain
-thousands of dated, place-named references to this species. This repository turns
-that text into structured occurrence records, then proves the result is
-trustworthy by independently recovering the official 19 from it — and measuring
-how much *earlier* it would have flagged each province.
+But removal is **two problems, not one**. Clearing a site inside a dense,
+well-connected invaded network buys a temporary density drop — neighbours refill
+it. Clearing a weakly connected site can be permanent. The quantity separating
+them is *reinvasion pressure*, which a spread model computes and a map of current
+occupancy cannot.
+
+Fitting that model needs more than the ~19 province-level detections on record —
+too few, spatially autocorrelated, and time-ordered. So the pipeline mines Thai
+news, government bulletins, and community posts for dated, place-named
+occurrences, and proves the result trustworthy by independently recovering the
+official 19 and measuring how much *earlier* it would have flagged each.
+
+```
+Thai text ──▶ occurrence records ──▶ two-layer spread model ──▶ where removal lasts
+              (validated vs the 19)    (water vs human transport)   + survey priority
+```
 
 ## Layout
 
@@ -39,7 +53,7 @@ docs/removal.md                "isn't the real problem getting rid of them?"
 docs/why-this-is-science.md    the "isn't this just a map?" answer, with measured power
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
-tests/test_geocode.py          the Thai matching cases that actually break
+tests/                         5 suites — run them before trusting anything
 ```
 
 ## Setup
@@ -94,6 +108,24 @@ without them:
 
 ## Status
 
-Pipeline scaffolding, tested on synthetic gazetteer data. No corpus collected,
-no ground truth entered, no results. The geocoder's ambiguity handling is real
-and passing; everything else awaits data.
+Method built and tested end to end on synthetic data. **No corpus collected, no
+ground truth entered, no real results.** What is verified so far:
+
+- Thai place-name resolution, including subdistrict collision and bare อ.เมือง
+- the spread model recovers a planted signal, in both directions
+- identifiability measured at 0.682 [0.562, 0.782] against a 0.5 baseline —
+  real but weak, and *not* improved by finer spatial resolution
+- removal durability collapses past ~60% network saturation
+
+Two findings recorded against interest, both asserted in the tests: the
+allocation gain multiple is an artifact of an unmeasured parameter (4x-107x),
+and the full model beats a trivial assets-only heuristic by only ~1.06x. Nearly
+all the value is in not defaulting to the worst-affected areas.
+
+```
+python tests/test_geocode.py     # 10/10
+python tests/test_bakeoff.py     #  7/7
+python tests/test_allocate.py    #  7/7
+python tests/test_removal.py     #  6/6
+python tests/test_experiment.py  #  7/7   (slow — many model fits)
+```

@@ -1,221 +1,193 @@
-# Title and abstract
+# ชื่อโครงงานและบทคัดย่อ / Title and abstract
 
-Two versions below. **Use the proposal-stage abstract now** — it claims a
-question and a method, which is all you currently have. The results-stage
-version is a template with slots; it must not be submitted until every bracket
-holds a real measured number.
+> **สถานะ:** ใช้บทคัดย่อฉบับ *ข้อเสนอโครงงาน* ในตอนนี้ เพราะยังไม่มีผลการทดลองจริง
+> ฉบับ *รายงานผล* เป็นแม่แบบที่มีช่องว่าง ห้ามส่งจนกว่าทุกวงเล็บจะมีตัวเลขที่วัดได้จริง
+>
+> **Status:** use the *proposal-stage* abstract now — there are no results yet.
+> The results-stage version is a template; do not submit it until every bracket
+> holds a measured number.
 
 ---
 
-## Title
+## การปรับกรอบเรื่อง / The reframe
 
-### The convention
+โครงงานนี้เคยตั้งกรอบไว้ว่า "ทำนายการแพร่กระจาย" ซึ่งอ่อนกว่าที่ควร เพราะคำถามที่
+ทุกฝ่ายสนใจจริง ๆ คือ **การกำจัด** กรอบใหม่จึงตอบคำถามนั้นโดยตรง
 
-YSC titles are descriptive three-part constructions, not conference-style
-questions. A verified winning title from MWIT shows the shape:
+The project was originally framed as *predicting spread*. That undersells it, and
+it dodges the question everyone actually asks: **can we get rid of them?** The
+new framing answers that head-on — removal is the goal, and the model's job is to
+say **where removal is permanent rather than maintenance.**
 
-> การประยุกต์ใช้**แบบจำลองการเรียนรู้ของเครื่อง** **เพื่อ**คัดกรองและระบุ
-> สารประกอบศักยภาพสูง**สำหรับ**ยับยั้งเอนไซม์โปรติเอส NS2B/NS3 ของไวรัสเดงกี
+---
 
-Structure: **[method] เพื่อ [what it does] สำหรับ/ของ [target domain]**. Method
-leads. Length is not a problem — precision is the point. So the title has to
-carry all three of: what is studied, how, and what it is for.
+## ชื่อโครงงาน / Title
 
-### Recommended
+### ภาษาไทย (แนะนำ)
 
-**Thai**
+> การพัฒนาแบบจำลองเครือข่ายการแพร่กระจายสองชั้น ร่วมกับการสกัดข้อมูลการพบ
+> ปลาหมอคางดำจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ เพื่อจำแนกพื้นที่ที่
+> การกำจัดให้ผลถาวรออกจากพื้นที่ที่ต้องกำจัดซ้ำ
 
-> การพัฒนาแบบจำลองเครือข่ายการเคลื่อนย้ายโดยมนุษย์ ร่วมกับการสกัดข้อมูลจาก
-> ข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ เพื่อคาดการณ์การแพร่กระจายของ
-> ปลาหมอคางดำ และจัดลำดับพื้นที่เฝ้าระวังในระดับตำบล
+### English
 
-**English**
+> Development of a Two-Layer Spread Network Model with Thai-Language Text
+> Mining to Distinguish Areas Where Removal of Blackchin Tilapia Is Permanent
+> from Areas Requiring Repeated Removal
 
-> Development of a Human-Transport Network Model Combined with Thai-Language
-> Text Mining to Predict the Spread of Blackchin Tilapia (*Sarotherodon
-> melanotheron*) and Prioritise Subdistrict-Level Surveillance
+โครงสร้างตามแบบ YSC — **[วิธีการ] เพื่อ [สิ่งที่ทำได้] [เป้าหมาย]**:
 
-Slot by slot:
-
-| Slot | Thai | Carries |
+| ส่วน | ข้อความ | สื่อถึง |
 |---|---|---|
-| Method 1 | แบบจำลองเครือข่ายการเคลื่อนย้ายโดยมนุษย์ | the novel modelling claim |
-| Method 2 | การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ | the data-creation contribution |
-| Studied | การแพร่กระจายของปลาหมอคางดำ | the subject |
-| Solves | จัดลำดับพื้นที่เฝ้าระวังในระดับตำบล | the application |
+| วิธีการ ๑ | แบบจำลองเครือข่ายการแพร่กระจายสองชั้น | ข้อเสนอเชิงแบบจำลองที่เป็นของใหม่ |
+| วิธีการ ๒ | การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ | การสร้างชุดข้อมูลที่ยังไม่เคยมี |
+| สิ่งที่ศึกษา | การพบปลาหมอคางดำ | หัวข้อ |
+| แก้ปัญหาอะไร | จำแนกพื้นที่ที่การกำจัดให้ผลถาวร | การนำไปใช้จริง |
 
-### Shorter, if the form caps the length
+### ฉบับสั้น (หากแบบฟอร์มจำกัดความยาว)
 
-> การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ ร่วมกับแบบจำลอง
-> เครือข่ายสองชั้น เพื่อจัดลำดับพื้นที่เฝ้าระวังการแพร่กระจายของปลาหมอคางดำ
+> แบบจำลองเครือข่ายการแพร่กระจายของปลาหมอคางดำ เพื่อจำแนกพื้นที่ที่การกำจัด
+> ให้ผลถาวร และจัดลำดับพื้นที่เฝ้าระวังระดับตำบล
 
-Drops "human transport" as an explicit phrase, which costs you the hypothesis in
-the title. Prefer the full version if you are allowed the characters.
+### พาดหัวสำหรับโปสเตอร์ (ไม่ใช่ชื่อในแบบฟอร์ม)
 
-### Emphasis variants
+> **"กำจัดตรงไหนถึงจะอยู่ถาวร"**
 
-Lead with whichever contribution you want judged as primary — the title decides
-which category you land in and what the judges anchor on.
+ใช้บนโปสเตอร์และสไลด์แรก ไม่ใช้ในแบบฟอร์มส่งผลงาน — แบบฟอร์มใช้ชื่อเชิงพรรณนาข้างบน
 
-*If the modelling is the centrepiece* (Environmental Science framing):
-
-> การพัฒนาแบบจำลองเครือข่ายสองชั้นเปรียบเทียบการแพร่กระจายตามแหล่งน้ำกับ
-> การเคลื่อนย้ายโดยมนุษย์ เพื่อคาดการณ์การรุกรานของปลาหมอคางดำในประเทศไทย
-
-*If the NLP pipeline is the centrepiece* (Computer Science framing):
-
-> การพัฒนาระบบสกัดข้อมูลการพบชนิดพันธุ์ต่างถิ่นจากข้อความภาษาไทย
-> ด้วยแบบจำลองภาษาขนาดใหญ่ เพื่อสร้างฐานข้อมูลการแพร่กระจายของปลาหมอคางดำ
-
-Pick one and stay consistent across the proposal, poster, and abstract.
-
-### Keep the question as a headline, not a title
-
-"ปลาว่ายมาเองหรือคนพามา?" — *Did the fish swim here, or did people bring it?* —
-is wrong for the submission form but right for the poster header, the opening
-line of your presentation, and the first slide. It states the falsifiable claim
-in seven words, which is what you want a judge to remember after walking away.
-Use it there; use the descriptive title on the form.
-
-**Short project name** (repo, slide footer): **Kangdam** — what everyone already
-calls the fish, and it survives being said out loud in either language.
+**ชื่อเรียกสั้นในที่เก็บโค้ด:** Kangdam
 
 ---
 
-## Proposal-stage abstract — English (~250 words)
+## บทคัดย่อ — ฉบับข้อเสนอโครงงาน (ภาษาไทย)
 
-> Thailand's blackchin tilapia (*Sarotherodon melanotheron*) invasion has reached
-> 19 provinces since 2011. With eradication no longer feasible, national policy
-> has shifted to early detection, which requires predicting where the species
-> will appear next.
+> ปลาหมอคางดำ (*Sarotherodon melanotheron*) แพร่กระจายในประเทศไทยแล้ว 19 จังหวัด
+> นับตั้งแต่ปี พ.ศ. 2554 สิ่งที่ทุกฝ่ายต้องการคือการกำจัดให้หมดไป แต่การกำจัดใน
+> ระดับประเทศไม่อาจทำได้ เนื่องจากระบบคลองเชื่อมต่อกันเป็นบริเวณกว้างและได้รับ
+> อิทธิพลของน้ำขึ้นน้ำลง ปลาชนิดนี้ทนความเค็มได้กว้าง และฟักไข่ในปากทำให้ลูกปลา
+> รอดสูง การกำจัดสัตว์น้ำต่างถิ่นที่ตั้งถิ่นฐานแล้วสำเร็จเฉพาะในระบบปิดหรือเมื่อ
+> ตรวจพบเร็วมากเท่านั้น
 >
-> Existing invasion models assume hydrological diffusion: connected water carries
-> fish. Published population-genetic work contradicts this for Thailand,
-> reporting 19 haplotypes, evidence of multiple independent introductions, and
-> regionally distinct populations with limited mixing. Populations that are
-> genetically separate were not connected by swimming fish. This project tests
-> the alternative — that human movement through aquaculture supply chains, not
-> waterway connectivity, governs where the species appears.
+> โครงงานนี้เสนอว่า "การกำจัด" มิใช่ปัญหาเดียว แต่แยกเป็นสองปัญหาที่มีคำตอบต่างกัน
+> การกำจัดในพื้นที่ที่ระบาดหนาแน่นและเชื่อมต่อกันดีได้ผลเพียงชั่วคราว เพราะปลาจาก
+> พื้นที่ข้างเคียงกลับเข้ามาแทนที่ ส่วนการกำจัดในพื้นที่ที่เชื่อมต่อกับแหล่งระบาดน้อย
+> สามารถให้ผลถาวร ตัวแปรที่กำหนดความแตกต่างคือ **แรงกดดันการรุกรานซ้ำ** ซึ่งคำนวณ
+> ได้จากแบบจำลองเครือข่ายการแพร่กระจาย มิใช่จากแผนที่การพบปลาในปัจจุบัน
 >
-> Testing that requires more than 19 province-level observations. I therefore
-> built a text-mining pipeline that extracts dated, place-named occurrence
+> การสร้างแบบจำลองดังกล่าวต้องใช้ข้อมูลมากกว่าการตรวจพบระดับจังหวัดเพียง 19 จุด
+> ผู้จัดทำจึงพัฒนากระบวนการสกัดข้อมูลการพบปลาจากข้อความภาษาไทย ทั้งข่าว ประกาศของ
+> หน่วยงานราชการ และโพสต์ในชุมชนออนไลน์ ด้วยแบบจำลองภาษาขนาดใหญ่ที่กำกับด้วย
+> โครงสร้างข้อมูลที่กำหนดไว้ ทุกระเบียนต้องมีข้อความอ้างอิงจากต้นฉบับและถูกตรวจสอบ
+> ย้อนกลับ ส่วนการระบุตำแหน่งใช้การจับคู่กับฐานข้อมูลตำบลด้วยวิธีที่กำหนดตายตัว
+> มิใช่ให้แบบจำลองภาษาเป็นผู้ระบุ การตรวจสอบความถูกต้องทำโดยให้กระบวนการค้นพบ
+> การตรวจพบระดับจังหวัดที่มีบันทึกอยู่แล้วได้ด้วยตนเอง และวัดระยะเวลาที่สามารถ
+> แจ้งเตือนได้ก่อนการยืนยันอย่างเป็นทางการ
+>
+> ข้อมูลที่ได้นำไปปรับกับแบบจำลองเครือข่ายสองชั้น เปรียบเทียบการแพร่กระจายตาม
+> แหล่งน้ำกับการเคลื่อนย้ายโดยมนุษย์ผ่านห่วงโซ่การเพาะเลี้ยงสัตว์น้ำ ประเมินด้วย
+> การทำนายจังหวัดถัดไปที่ถูกรุกรานแบบนอกกลุ่มตัวอย่าง เทียบกับแบบจำลองพื้นฐานที่ใช้
+> เพียงระยะทางและที่ใช้เพียงพื้นที่เพาะเลี้ยง ผลลัพธ์คือลำดับพื้นที่ที่การกำจัด
+> ให้ผลถาวร และลำดับพื้นที่เฝ้าระวังระดับตำบล พร้อมรายงานกำลังการจำแนกของแบบจำลอง
+> เพื่อระบุขอบเขตความเชื่อมั่นของข้อสรุป
+
+## Abstract — proposal stage (English)
+
+> Blackchin tilapia (*Sarotherodon melanotheron*) has spread to 19 Thai provinces
+> since 2011. What everyone wants is removal — but national eradication is not
+> achievable: an open, tidally connected canal network spanning many provinces, a
+> euryhaline species, and a mouthbrooder with high juvenile survival. Documented
+> eradications of established fish occur only in closed systems or very shortly
+> after arrival.
+>
+> This project argues that removal is not one problem but two, with different
+> answers. Clearing a site inside a dense, well-connected invaded network yields
+> only a temporary reduction, because neighbouring populations refill it.
+> Clearing a site weakly connected to invaded areas can be permanent. The
+> quantity that separates them is **reinvasion pressure** — computable from a
+> fitted spread network model, and not readable from a map of current occupancy.
+>
+> Building that model requires more than 19 province-level observations. I
+> therefore developed a pipeline that extracts dated, place-named occurrence
 > records from Thai-language news, government bulletins, and community posts
 > using a language model constrained to a structured schema. Every record carries
 > a verbatim source quote and is verified against it; place names are resolved to
 > official subdistricts by a deterministic gazetteer rather than by the model.
-> The pipeline is validated by independently recovering the documented
-> provincial detections and measuring how far in advance it would have flagged
-> each one.
+> The pipeline is validated by independently recovering the documented provincial
+> detections and measuring how far ahead of official confirmation it would have
+> flagged each.
 >
 > The resulting record is fitted to a two-layer network model — waterway
-> connectivity against aquaculture-mediated human transport — compared by rolling
-> out-of-sample prediction of the next province invaded, against nulls including
-> distance-only and aquaculture-area-only. A predictive advantage for the
-> human-transport layer, particularly across province pairs that are
-> hydrologically disconnected but commercially linked, would support the
-> hypothesis. The output is a ranked subdistrict surveillance priority list.
+> connectivity against aquaculture-mediated human transport — evaluated by
+> rolling out-of-sample prediction of the next province invaded, against
+> distance-only and aquaculture-area-only nulls. Outputs are a ranked list of
+> areas where removal is durable and a subdistrict surveillance priority list,
+> reported alongside a measured identifiability figure bounding the confidence of
+> the conclusion.
 
-## Proposal-stage abstract — Thai
-
-> ปลาหมอคางดำ (*Sarotherodon melanotheron*) แพร่กระจายในประเทศไทยแล้ว 19 จังหวัด
-> นับตั้งแต่ปี พ.ศ. 2554 เมื่อการกำจัดให้หมดสิ้นไม่อาจทำได้อีกต่อไป นโยบายระดับชาติ
-> จึงมุ่งไปที่การตรวจพบแต่เนิ่น ซึ่งจำเป็นต้องคาดการณ์ได้ว่าปลาชนิดนี้จะปรากฏที่ใด
-> เป็นลำดับถัดไป
+> **ให้ครูภาษาไทยตรวจก่อนส่ง** ศัพท์เทคนิคเป็นมาตรฐานแล้ว แต่ระดับภาษาอาจต้องปรับ
+> ตามที่ YSC คาดหวัง และผู้อ่านเจ้าของภาษาจะจับสำนวนที่ไม่เป็นธรรมชาติได้
 >
-> แบบจำลองการรุกรานที่ใช้กันอยู่ตั้งอยู่บนสมมติฐานว่าปลาแพร่กระจายไปตามแหล่งน้ำ
-> ที่เชื่อมต่อกัน แต่งานวิจัยพันธุศาสตร์ประชากรที่ตีพิมพ์แล้วขัดแย้งกับสมมติฐานนี้
-> โดยรายงานแฮโพลไทป์ 19 แบบ หลักฐานการนำเข้าหลายครั้งอย่างเป็นอิสระต่อกัน และประชากร
-> ที่แตกต่างกันตามภูมิภาคโดยมีการผสมกันจำกัด ประชากรที่แยกจากกันทางพันธุกรรมย่อมมิได้
-> เชื่อมต่อกันด้วยการว่ายน้ำของปลา โครงงานนี้จึงทดสอบสมมติฐานทางเลือกว่า การเคลื่อนย้าย
-> โดยมนุษย์ผ่านห่วงโซ่อุปทานการเพาะเลี้ยงสัตว์น้ำ มิใช่ความเชื่อมโยงของแหล่งน้ำ
-> เป็นตัวกำหนดการปรากฏของปลาชนิดนี้
->
-> การทดสอบดังกล่าวต้องการข้อมูลมากกว่าการตรวจพบระดับจังหวัดเพียง 19 จุด ผู้จัดทำจึง
-> พัฒนากระบวนการสกัดข้อมูลจากข้อความภาษาไทย ทั้งข่าว ประกาศของหน่วยงานราชการ และโพสต์
-> ในชุมชนออนไลน์ ด้วยแบบจำลองภาษาขนาดใหญ่ที่ถูกกำกับด้วยโครงสร้างข้อมูลที่กำหนดไว้
-> ทุกระเบียนต้องมีข้อความอ้างอิงจากต้นฉบับและได้รับการตรวจสอบย้อนกลับ ส่วนชื่อสถานที่
-> จะถูกจับคู่กับตำบลตามระบบราชการด้วยวิธีการที่กำหนดตายตัว มิใช่โดยแบบจำลอง การตรวจสอบ
-> ความถูกต้องทำโดยให้กระบวนการนี้ค้นพบการตรวจพบระดับจังหวัดที่มีบันทึกอยู่แล้วได้ด้วยตนเอง
-> และวัดว่าจะสามารถแจ้งเตือนล่วงหน้าได้นานเพียงใด
->
-> ข้อมูลที่ได้จะนำไปปรับกับแบบจำลองเครือข่ายสองชั้น คือความเชื่อมโยงของแหล่งน้ำ เทียบกับ
-> การเคลื่อนย้ายโดยมนุษย์ผ่านการเพาะเลี้ยงสัตว์น้ำ โดยเปรียบเทียบด้วยการทำนายจังหวัดถัดไป
-> ที่จะถูกรุกรานแบบนอกกลุ่มตัวอย่าง เทียบกับแบบจำลองพื้นฐานที่ใช้เพียงระยะทาง และที่ใช้
-> เพียงพื้นที่เพาะเลี้ยงสัตว์น้ำ หากชั้นการเคลื่อนย้ายโดยมนุษย์ทำนายได้ดีกว่า โดยเฉพาะ
-> ในคู่จังหวัดที่ไม่เชื่อมต่อกันทางแหล่งน้ำแต่เชื่อมโยงกันทางการค้า ย่อมเป็นหลักฐาน
-> สนับสนุนสมมติฐานดังกล่าว ผลลัพธ์คือลำดับความสำคัญของตำบลสำหรับการเฝ้าระวัง
-
-> **Have a Thai teacher read this before submitting.** The technical vocabulary
-> is standard but the register may want adjusting to whatever YSC expects, and a
-> native reader will catch phrasing a non-native draft will not.
+> **Have a Thai teacher review the Thai.** The technical vocabulary is standard,
+> but register may need adjusting and a native reader will catch phrasing a
+> non-native draft will not.
 
 ---
 
-## Results-stage abstract — template
+## บทคัดย่อ — ฉบับรายงานผล (แม่แบบ)
 
-Swap this in only when every bracket holds a measured number. Same first two
-paragraphs as above; replace from the method paragraph on:
+ใช้ฉบับนี้เมื่อทุกวงเล็บมีตัวเลขจริงแล้ว สองย่อหน้าแรกเหมือนเดิม แทนที่ตั้งแต่
+ย่อหน้าวิธีการเป็นต้นไป:
 
-> The pipeline recovered **[N]** of the 19 documented provincial detections from
-> text alone, a median **[M]** months before official confirmation, at **[P]%**
-> precision on a hand-labelled sample of **[K]** records. It yielded **[R]**
-> located occurrence records across **[S]** subdistricts — **[R/19]**× the
-> observations available from the official record.
+> กระบวนการสกัดข้อมูลค้นพบการตรวจพบระดับจังหวัด **[N]** จาก 19 จังหวัด จากข้อความ
+> เพียงอย่างเดียว โดยเร็วกว่าการยืนยันอย่างเป็นทางการมัธยฐาน **[M]** เดือน มีความ
+> แม่นยำ **[P]%** จากการตรวจสอบด้วยมือ **[K]** ระเบียน ได้ระเบียนการพบที่ระบุตำแหน่ง
+> ได้ **[R]** ระเบียน ครอบคลุม **[S]** ตำบล
 >
-> The hybrid model predicted the next province invaded with **[top-3 accuracy]**
-> in rolling out-of-sample validation, against **[X]** for waterway connectivity
-> alone, **[Y]** for distance only, and **[Z]** for aquaculture area only. The
-> human-transport layer's advantage was concentrated in **[D]** province pairs
-> that are hydrologically disconnected but commercially linked, consistent with
-> the genetic evidence for multiple introductions.
+> แบบจำลองผสมทำนายจังหวัดถัดไปได้ถูกต้องใน 3 อันดับแรก **[X]%** เทียบกับ **[Y]%**
+> ของแบบจำลองที่ใช้เฉพาะแหล่งน้ำ ค่าสหสัมพันธ์ระหว่างสองชั้นเครือข่ายเท่ากับ
+> **[C]** ซึ่งกำหนดขอบเขตว่าการเปรียบเทียบนี้จำแนกได้เพียงใด
 >
-> **[T]** subdistricts with no recorded detection ranked above the median
-> establishment risk; **[F]** were checked in the field, of which **[G]**
-> **[did / did not]** yield confirmed occurrences.
+> การวิเคราะห์การกำจัดพบว่า **[T]%** ของพื้นที่ระบาดปัจจุบันจะมีปลากลับเข้ามาภายใน
+> **[U]** ปีหลังการกำจัด ส่วนพื้นที่ **[V]** ตำบลที่การกำจัดคาดว่าจะให้ผลถาวรได้รับ
+> การจัดลำดับไว้ และมีการสำรวจภาคสนาม **[F]** แห่ง พบปลา **[G]** แห่ง
 
-**Rules for filling it in.** State the strict-species-filter number if it differs
-from the permissive one — reporting only the more flattering of the two is the
-kind of thing a judge finds by asking one follow-up question. If the hybrid model
-does *not* beat the waterway model, say so plainly and report it as the finding;
-a well-executed negative result against a pre-registered comparison is a
-legitimate outcome and defends far better than a hedged positive one.
+**กฎการกรอกตัวเลข**
+
+- รายงานทั้งค่าที่ใช้เกณฑ์เข้มงวดและเกณฑ์ผ่อนปรนในการระบุชนิดปลา การรายงานเฉพาะ
+  ค่าที่ดูดีกว่าคือสิ่งที่กรรมการถามเจอด้วยคำถามเดียว
+- หากแบบจำลองผสม **ไม่** ชนะแบบจำลองแหล่งน้ำ ให้รายงานตามจริงและถือเป็นผลการทดลอง
+  ผลลบที่ได้จากการเปรียบเทียบที่กำหนดไว้ล่วงหน้า ป้องกันตัวได้ดีกว่าผลบวกที่คลุมเครือ
+- อย่ารายงานตัวคูณของประโยชน์จากการจัดลำดับโดยไม่ระบุสมมติฐาน — ในการจำลอง ค่านี้
+  เปลี่ยนจาก 4 เท่าถึง 107 เท่าตามพารามิเตอร์ที่ยังไม่ได้วัด ให้รายงานเฉพาะทิศทาง
 
 ---
 
-## Keywords
+## คำสำคัญ / Keywords
 
-invasive species; *Sarotherodon melanotheron*; blackchin tilapia; human-mediated
-dispersal; network model; natural language processing; surveillance
+ชนิดพันธุ์ต่างถิ่นรุกราน; ปลาหมอคางดำ; การกำจัดที่ให้ผลถาวร; แรงกดดันการรุกรานซ้ำ;
+แบบจำลองเครือข่าย; การประมวลผลภาษาธรรมชาติ; การเฝ้าระวังเชิงพื้นที่
+
+invasive alien species; *Sarotherodon melanotheron*; durable eradication;
+reinvasion pressure; network model; natural language processing; surveillance
 prioritisation; Thailand
 
-ชนิดพันธุ์ต่างถิ่นรุกราน; ปลาหมอคางดำ; การแพร่กระจายโดยมนุษย์; แบบจำลองเครือข่าย;
-การประมวลผลภาษาธรรมชาติ; การเฝ้าระวัง
-
 ---
 
-## Two things to check against the YSC form
+## ข้อควรตรวจกับแบบฟอร์ม YSC
 
-- **Word limit.** The English abstract above is ~250 words. Science-fair forms
-  commonly cap at 250; trim the final sentence of the method paragraph first, it
-  is the most compressible.
-- **First person.** Some forms require impersonal phrasing. If so, replace "I
-  therefore built" with "A text-mining pipeline was developed" throughout — but
-  keep it consistent, and do not use it to obscure which parts you built
-  yourself. Judges specifically ask that.
+- **ความยาว** บทคัดย่อภาษาอังกฤษข้างบนประมาณ 250 คำ หากแบบฟอร์มจำกัด 250 คำ
+  ให้ตัดประโยคสุดท้ายของย่อหน้าวิธีการก่อน
+- **บุรุษที่หนึ่ง** หากแบบฟอร์มกำหนดให้ใช้รูปประโยคที่ไม่ระบุผู้กระทำ ให้เปลี่ยน
+  "ผู้จัดทำจึงพัฒนา" เป็น "จึงได้พัฒนา" ให้สม่ำเสมอทั้งฉบับ แต่อย่าใช้เพื่อกลบว่า
+  ส่วนใดเป็นผลงานของตนเอง เพราะกรรมการถามเรื่องนี้โดยตรง
 
----
+## แหล่งอ้างอิงรูปแบบชื่อโครงงาน
 
-## Source for the title convention
-
-Pattern inferred from a verified YSC winning title from Mahidol Wittayanusorn
-School (MWIT): "การประยุกต์ใช้แบบจำลองการเรียนรู้ของเครื่อง เพื่อคัดกรองและระบุ
-สารประกอบศักยภาพสูงสำหรับยับยั้งเอนไซม์โปรติเอส NS2B/NS3 ของไวรัสเดงกี"
+รูปแบบอ้างอิงจากชื่อโครงงานที่ได้รางวัล YSC ของโรงเรียนมหิดลวิทยานุสรณ์:
+"การประยุกต์ใช้แบบจำลองการเรียนรู้ของเครื่อง เพื่อคัดกรองและระบุสารประกอบศักยภาพสูง
+สำหรับยับยั้งเอนไซม์โปรติเอส NS2B/NS3 ของไวรัสเดงกี"
 — https://www.mwit.ac.th/html/news_680211/
 
-Only one title could be retrieved verbatim; NECTEC's project database
-(fic.nectec.or.th) and most Thai school sites were unreachable from where this
-was drafted. **Check a dozen more titles yourself** in your own category before
-finalising — NSTDA publishes finalist lists as PDFs at nstda.or.th/ysc, and the
-per-year project database at fic.nectec.or.th is the fuller source. If the
-convention in your category differs from the one example above, follow your
-category.
+ตรวจสอบชื่อโครงงานในสาขาของตนเองเพิ่มอีกอย่างน้อยสิบเรื่องก่อนตัดสินใจ ฐานข้อมูล
+โครงงานรายปีอยู่ที่ fic.nectec.or.th และรายชื่อผู้เข้ารอบเผยแพร่เป็น PDF ที่
+nstda.or.th/ysc
