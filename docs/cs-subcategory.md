@@ -1,5 +1,12 @@
 # สาขาย่อยในสาขาวิทยาการคอมพิวเตอร์ / Which CS subcategory
 
+> **ตัดสินใจแล้ว: CSBI** เอกสารที่เหลือในหน้านี้เก็บไว้เป็นบันทึกเหตุผล
+> ส่วน CSAI (`docs/csai-track.md`) และการทำ SDM (`docs/existing-data.md`)
+> เป็นภาคผนวก **ไม่ต้องสร้าง**
+>
+> **Decided: CSBI.** The rest of this page is the reasoning, kept as a record.
+> The CSAI and SDM paths are appendix material — do not build them.
+
 สาขาวิทยาการคอมพิวเตอร์ของ YSC มี 7 สาขาย่อย การเลือกสาขาย่อยสำคัญพอ ๆ กับการเลือก
 สาขาหลัก เพราะกำหนดว่าจะถูกเปรียบเทียบกับโครงงานแบบใด
 

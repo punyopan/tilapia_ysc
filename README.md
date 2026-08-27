@@ -6,9 +6,10 @@ A computational model of spread and reinvasion in *Sarotherodon melanotheron*
 (ปลาหมอคางดำ), built on Thai-language literature mining, to distinguish sites
 where removal is permanent from sites where it is recurring maintenance.
 
-> **YSC: Computer Science → CSBI (Computational Biology and Bioinformatics).**
-> Literature mining generates the dataset; the spread and reinvasion model is
-> the contribution. See `docs/cs-subcategory.md` for why CSBI over CSAI or CSSD.
+> **YSC: Computer Science → CSBI (Computational Biology and Bioinformatics). Decided.**
+> Literature mining generates the dataset; the spread and reinvasion model is the
+> contribution. Reasoning in `docs/cs-subcategory.md`; CSAI and CSSD alternatives
+> are kept in the docs as appendix only — **do not build them.**
 
 ## The question
 
@@ -132,12 +133,33 @@ Costs about **$18 end to end** — see `docs/compute.md` for the breakdown and t
 levers. Iterate the prompt on a ~150-document dev set; run the full corpus twice,
 not eight times.
 
-## Before you run anything
+## Critical path
 
-**Gate on the resolver result: a hand-labelled test set of ~400 real Thai place
-mentions** — protocol and ambiguity taxonomy in `docs/cs-track.md`.
+In order. Each step blocks the ones below it.
 
-Two files in `data/reference/` are also yours to assemble:
+1. **Gazetteer** (`data/reference/gazetteer.csv`) — download the DOPA/HDX
+   subdistrict table. Blocks everything.
+2. **Ground truth** (`data/reference/official_detections.csv`) — the 19
+   provinces with dates and citations. Blocks all validation.
+3. **Corpus** — scrape, screen with `prefilter.py`, extract. ~$18.
+4. **`layer_confounding()` on the real network — before any model comparison.**
+   If the canal network and the trade network turn out highly correlated, the
+   comparison is weakly identified no matter what, and you need to know that
+   first, not after fitting.
+5. **Spread model + removal durability** — the headline result.
+6. **Power check on the real network** — bounds what you may claim.
+7. **Fieldwork**, if the timeline allows. Highest value per hour of anything here.
+
+**What is NOT on the critical path any more.** The CSBI framing changes what
+gates the project:
+
+- the ~400-item resolver benchmark is now a *quality check*, not a gate. What
+  you need instead is the ~100-record hand-check in `validate.precision_sample()`
+  — enough to state corpus precision, far less work.
+- `distill.py` (CSAI) and `sdm.py` (habitat modelling) are **optional**. They are
+  real and tested, but CSBI needs neither. Ignore them unless time appears.
+
+Two files in `data/reference/` are yours to assemble:
 
 - **`gazetteer.csv`** — Thai administrative units with codes. Sources in
   `data/reference/README.md`. Keep the codes; they join everything downstream.
