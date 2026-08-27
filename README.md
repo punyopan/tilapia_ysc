@@ -1,53 +1,64 @@
-# Kangdam — Thai geographic entity resolution for invasive species reporting
+# Kangdam — where removing blackchin tilapia actually lasts
 
-**ต.บางแก้ว อยู่จังหวัดไหน**
+**กำจัดตรงไหนถึงจะอยู่ถาวร**
 
-A hybrid neural-symbolic system for extracting and geolocating spatial event
-records from Thai-language text, evaluated on blackchin tilapia
-(*Sarotherodon melanotheron*, ปลาหมอคางดำ) spread reporting.
+A computational model of spread and reinvasion in *Sarotherodon melanotheron*
+(ปลาหมอคางดำ), built on Thai-language literature mining, to distinguish sites
+where removal is permanent from sites where it is recurring maintenance.
 
 > **YSC: Computer Science → CSBI (Computational Biology and Bioinformatics).**
-> Literature mining generates the data; the spread and reinvasion model is the
-> contribution. See `docs/cs-subcategory.md` for why CSBI over CSAI or CSSD, and
-> `docs/cs-track.md` for the evaluation plan.
+> Literature mining generates the dataset; the spread and reinvasion model is
+> the contribution. See `docs/cs-subcategory.md` for why CSBI over CSAI or CSSD.
 
-## The problem
+## The question
 
-Extracting geolocated records from low-resource-language text is poorly solved,
-and Thai is specifically hard:
+Removal is the goal, but national eradication is not achievable: an open,
+tidally connected canal network, a euryhaline species, a mouthbrooder with high
+juvenile survival.
+
+So the computational-biology question is **where is removal permanent?**
+
+Clearing a site strongly connected to dense invaded areas yields only temporary
+reduction — neighbouring populations refill it. Clearing a weakly connected site
+can be permanent. The governing quantity is **reinvasion pressure**: computable
+from a fitted spread model, unreadable from a map of current occupancy.
+
+Measured on simulated networks, that window **closes past ~60% saturation** —
+beyond it every site refills and no targeting recovers durability.
+
+## The data problem, and literature mining
+
+Fitting the model needs more than the ~19 province-level detections on record.
+So a schema-constrained language model extracts dated, place-named occurrence
+records from Thai news, government bulletins, and community posts — the standard
+bioinformatics practice of mining literature to build a biological dataset.
+
+Two design rules make the output trustworthy:
+
+- every record carries a source quote **verified character-for-character**, as a
+  hallucination control
+- the model reports place names **verbatim and never resolves them**; a
+  deterministic matcher assigns subdistrict codes
+
+Thai makes that second step genuinely hard:
 
 | | why standard methods fail |
 |---|---|
-| no inter-word spacing | `ต.บางแก้ว` / `ตำบลบางแก้ว` / `ตำบล บางแก้ว` are one place, and none string-match |
+| no inter-word spacing | `ต.บางแก้ว` / `ตำบลบางแก้ว` / `ตำบล บางแก้ว` are one place, none string-match |
 | name collision | many provinces have a `ต.บางแก้ว`; the string alone cannot resolve it |
-| `อ.เมือง` | gazetteers write `เมือง<province>`, text writes a bare `อ.เมือง` — neither exact nor fuzzy matching connects them |
+| `อ.เมือง` | gazetteers write `เมือง<province>`, text writes bare `อ.เมือง` |
 | colloquial aliases | `แม่กลอง` for สมุทรสงคราม; no edit distance recovers it |
 
-## The claim being tested
-
-The architecture is hybrid: **the language model reports place names verbatim
-and never resolves them**; a deterministic gazetteer matcher does resolution.
-The obvious alternative is to ask the model for the administrative code
-directly.
-
-> **H0** — asking the model directly is as accurate as the hybrid pipeline.
-> **H1** — the hybrid is more accurate, and the gap concentrates in ambiguous cases.
-
-Measured by `benchmark.py` against five systems, per ambiguity type, with a
-**fabrication rate** on items whose correct answer is *"cannot be resolved"* — a
-system that always answers scores well on resolvable items and invents locations
-for the rest.
-
-## Extrinsic evaluation
-
-Outputs feed a two-layer spread model for the species, whose official record
-covers only ~19 provinces. This measures how geolocation error propagates into
-downstream scientific inference — connecting NLP accuracy to applied conclusions,
-which most extraction work cannot do.
+`benchmark.py` measures the resolver against five systems per ambiguity type,
+including a **fabrication rate** on items whose correct answer is *"cannot be
+resolved"* — a system that always answers scores well on resolvable items and
+invents locations for the rest.
 
 ```
-Thai text ──▶ LLM reports names ──▶ deterministic resolver ──▶ spread model
-              (schema + grounding)   (hierarchy, aliases)      (extrinsic eval)
+Thai text ──▶ occurrence records ──▶ spread + reinvasion model ──▶ where removal lasts
+              (mined, grounded,       (two-layer network,           + when the window
+               deterministically       out-of-sample validated)      closes
+               geocoded)
 ```
 
 ## Layout
@@ -60,7 +71,7 @@ src/tilapia/extract.py         documents -> records via Claude (batch + single)
 src/tilapia/providers.py       provider-agnostic extraction (Anthropic, DeepSeek)
 src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
-src/tilapia/benchmark.py       EVALUATION HARNESS — the CS contribution
+src/tilapia/benchmark.py       resolver evaluation: baselines, ablations, fabrication
 src/tilapia/validate.py        recall, lead time, precision, excess
 src/tilapia/spread.py          the two-layer model: water vs human transport
 src/tilapia/experiment.py      out-of-sample test + power check
@@ -119,9 +130,8 @@ not eight times.
 
 ## Before you run anything
 
-**The one thing that gates the CS result: a hand-labelled test set of ~400 real
-Thai place mentions.** Without it there is no measured contribution, only an
-assertion. Labelling protocol and ambiguity taxonomy are in `docs/cs-track.md`.
+**Gate on the resolver result: a hand-labelled test set of ~400 real Thai place
+mentions** — protocol and ambiguity taxonomy in `docs/cs-track.md`.
 
 Two files in `data/reference/` are also yours to assemble:
 
@@ -151,7 +161,7 @@ and the full model beats a trivial assets-only heuristic by only ~1.06x. Nearly
 all the value is in not defaulting to the worst-affected areas.
 
 ```
-python tests/test_benchmark.py   #  7/7   <- the CS contribution
+python tests/test_benchmark.py   #  7/7
 python tests/test_geocode.py     # 10/10
 python tests/test_bakeoff.py     #  7/7
 python tests/test_allocate.py    #  7/7
