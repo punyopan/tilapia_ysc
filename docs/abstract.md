@@ -23,133 +23,127 @@ say **where removal is permanent rather than maintenance.**
 
 ## ชื่อโครงงาน / Title
 
-> **สาขา: วิทยาการคอมพิวเตอร์ (ล็อกแล้ว)** ชื่อเรื่องจึงต้องนำด้วยระบบ ไม่ใช่นำด้วยปลา
-> ดูแผนการปรับทั้งหมดที่ `docs/cs-track.md`
+> **สาขา: วิทยาการคอมพิวเตอร์ (ล็อกแล้ว) — สาขาย่อยแนะนำ CSBI ชีววิทยาเชิงคำนวณ
+> และชีวสารสนเทศ** ดู `docs/cs-subcategory.md` สำหรับเหตุผล
 
 ### ภาษาไทย (แนะนำ)
+
+> การพัฒนาแบบจำลองเชิงคำนวณของการแพร่กระจายและการกลับมาระบาดซ้ำของปลาหมอคางดำ
+> ร่วมกับการสกัดข้อมูลการพบจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่
+> เพื่อจำแนกพื้นที่ที่การกำจัดให้ผลถาวรออกจากพื้นที่ที่ต้องกำจัดซ้ำ
+
+### English
+
+> A Computational Model of Spread and Reinvasion in *Sarotherodon melanotheron*,
+> Built on Thai-Language Text Mining, to Distinguish Areas Where Removal Is
+> Permanent from Areas Requiring Repeated Removal
+
+โครงสร้างตามแบบ YSC — **[วิธีการ] เพื่อ [สิ่งที่ทำได้]**:
+
+| ส่วน | ข้อความ | สื่อถึง |
+|---|---|---|
+| วิธีการ ๑ | แบบจำลองเชิงคำนวณของการแพร่กระจายและการกลับมาระบาดซ้ำ | ระบาดวิทยาเชิงคำนวณ — ผลงานหลัก |
+| วิธีการ ๒ | การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษา | literature mining — วิธีสร้างชุดข้อมูล |
+| แก้ปัญหาอะไร | จำแนกพื้นที่ที่การกำจัดให้ผลถาวร | ข้อค้นพบที่นำไปใช้ได้ |
+
+ใน CSBI ทั้งสองส่วนนับเป็นชีววิทยาเชิงคำนวณ — การขุดข้อความจากวรรณกรรมเพื่อสร้าง
+ชุดข้อมูลทางชีววิทยาเป็นงานชีวสารสนเทศที่ยอมรับกันมานาน ส่วนแบบจำลองการแพร่กระจาย
+คือระบาดวิทยาเชิงคำนวณโดยตรง
+
+### ฉบับสั้น (หากแบบฟอร์มจำกัดความยาว)
+
+> แบบจำลองเชิงคำนวณของการกลับมาระบาดซ้ำของปลาหมอคางดำ
+> เพื่อจำแนกพื้นที่ที่การกำจัดให้ผลถาวร
+
+### ถ้าเลือก CSSD (การออกแบบซอฟต์แวร์และวิทยาการข้อมูล) แทน
 
 > การพัฒนาระบบสกัดและระบุตำแหน่งเหตุการณ์เชิงพื้นที่จากข้อความภาษาไทย
 > ด้วยสถาปัตยกรรมผสมระหว่างแบบจำลองภาษาขนาดใหญ่กับการจับคู่เชิงกฎ
 > เพื่อสร้างฐานข้อมูลการแพร่กระจายของชนิดพันธุ์ต่างถิ่นรุกราน
 
-### English
-
-> A Hybrid Neural-Symbolic System for Extracting and Geolocating Spatial Event
-> Records from Thai-Language Text, Evaluated on Invasive Species Spread Reporting
-
-โครงสร้างตามแบบ YSC — **[วิธีการ] เพื่อ [สิ่งที่ทำได้] [เป้าหมาย]**:
-
-| ส่วน | ข้อความ | สื่อถึง |
-|---|---|---|
-| วิธีการ | สถาปัตยกรรมผสมระหว่างแบบจำลองภาษากับการจับคู่เชิงกฎ | ข้อเสนอเชิงระบบที่ทดสอบได้ |
-| สิ่งที่ศึกษา | การสกัดและระบุตำแหน่งจากข้อความภาษาไทย | ปัญหาเชิงคอมพิวเตอร์ |
-| แก้ปัญหาอะไร | ฐานข้อมูลการแพร่กระจายของชนิดพันธุ์ต่างถิ่น | โดเมนที่ใช้ประเมิน |
-
-ปลาหมอคางดำอยู่ในตำแหน่ง "โดเมนที่ใช้ประเมิน" ไม่ใช่หัวข้อ — นี่คือรูปแบบปกติของ
-งาน applied NLP และเป็นสิ่งที่ทำให้ส่งสาขาคอมพิวเตอร์ได้อย่างชอบธรรม
-
-### ฉบับสั้น (หากแบบฟอร์มจำกัดความยาว)
-
-> ระบบระบุตำแหน่งทางภูมิศาสตร์จากข้อความภาษาไทยด้วยสถาปัตยกรรมผสม
-> เพื่อสร้างฐานข้อมูลการแพร่กระจายของปลาหมอคางดำ
-
 ### พาดหัวสำหรับโปสเตอร์ (ไม่ใช่ชื่อในแบบฟอร์ม)
 
-> **"ต.บางแก้ว อยู่จังหวัดไหน"**
-
-พาดหัวนี้ดีสำหรับสาขาคอมพิวเตอร์ เพราะระบุปัญหาเชิงเทคนิคได้ในห้าคำ — ชื่อตำบล
-ซ้ำกันข้ามจังหวัด และระบบที่ตอบทั้งที่ตอบไม่ได้คือระบบที่กุคำตอบ
+> **"กำจัดตรงไหนถึงจะอยู่ถาวร"**
 
 **ชื่อเรียกสั้นในที่เก็บโค้ด:** Kangdam
 
 ---
 
-## สาขา / Category
+## สาขาและสาขาย่อย / Category and subcategory
 
-**วิทยาการคอมพิวเตอร์ — ล็อกแล้ว แก้ไม่ได้**
+**สาขาหลัก: วิทยาการคอมพิวเตอร์ — ล็อกแล้ว**
+**สาขาย่อยแนะนำ: CSBI ชีววิทยาเชิงคำนวณและชีวสารสนเทศ**
 
-เดิมเคยประเมินว่าสาขาสิ่งแวดล้อมเหมาะกว่า แต่เมื่อเปลี่ยนสาขาไม่ได้แล้ว ข้อสรุปนั้น
-ไม่มีประโยชน์ สิ่งที่ต้องทำคือปรับให้ชนะในสาขาคอมพิวเตอร์ ซึ่งทำได้ และงานส่วนใหญ่
-มีอยู่แล้ว
+สาขาย่อยสำคัญพอ ๆ กับสาขาหลัก เพราะกำหนดว่าจะถูกเทียบกับโครงงานแบบใด
 
-**การปรับ:** ตัวระบบระบุตำแหน่งคือผลงาน ส่วนปลาคือโดเมนที่ใช้ประเมิน งานเชิงนิเวศ
-ทั้งหมดไม่ถูกทิ้ง แต่เปลี่ยนบทบาทเป็น **การประเมินปลายทาง (extrinsic evaluation)**
-ซึ่งเป็นจุดแข็งที่งาน NLP ส่วนใหญ่ไม่มี
+- **CSBI (แนะนำ)** — เก็บงานได้ทั้งหมด แบบจำลองการแพร่กระจายและข้อค้นพบเรื่อง
+  ความคงทนของการกำจัดเป็น **ผลงานหลัก** ไม่ใช่ของแถม ส่วนการสกัดข้อความคือ
+  literature mining ซึ่งเป็นวิธีมาตรฐานของชีวสารสนเทศ
+- **CSSD (สำรอง)** — ตัวระบบและการประเมิน (`benchmark.py`) เป็นผลงานหลัก ชีววิทยา
+  ลดเป็นโดเมนที่ใช้ประเมิน
+- **CSAI (ไม่แนะนำ)** — โครงงานนี้ไม่ได้ฝึกแบบจำลองใด ๆ คำถามแรกของกรรมการจะเป็น
+  "ส่วนไหนคือการเรียนรู้ของเครื่อง" และไม่มีคำตอบที่ดี
 
-**สิ่งที่ยังขาดและต้องทำ:** ชุดข้อมูลทดสอบที่ติดป้ายด้วยมือ 300–500 รายการ ไม่มีชุดนี้
-ก็ไม่มีผลงานเชิงคอมพิวเตอร์ มีแต่คำกล่าวอ้าง
-
-รายละเอียดทั้งหมด — ข้อเสนอที่ทดสอบได้ ระบบเปรียบเทียบ การ ablate ประเภทความกำกวม
-วิธีติดป้าย และคำตอบเมื่อกรรมการถามว่า "ส่วนไหนคือวิทยาการคอมพิวเตอร์" — อยู่ที่
-`docs/cs-track.md`
+เหตุผลเต็มอยู่ที่ `docs/cs-subcategory.md`
 
 ---
 
 ## บทคัดย่อ — ฉบับข้อเสนอโครงงาน (ภาษาไทย)
 
-> การสกัดระเบียนเหตุการณ์ที่ระบุตำแหน่งทางภูมิศาสตร์ได้จากข้อความภาษาที่มี
-> ทรัพยากรจำกัด ยังเป็นปัญหาที่แก้ได้ไม่ดีนัก ภาษาไทยมีความยากเฉพาะตัวหลายประการ
-> ได้แก่ การไม่เว้นวรรคระหว่างคำ ชื่อตำบลที่ซ้ำกันข้ามจังหวัดจนสตริงเพียงอย่างเดียว
-> ไม่พอต่อการระบุ คำนำหน้าหน่วยการปกครองที่เขียนได้หลายรูปแบบ อำเภอเมืองซึ่ง
-> ฐานข้อมูลราชการเขียนว่า เมือง<จังหวัด> แต่ข้อความทั่วไปเขียนเพียง อ.เมือง และ
-> ชื่อพ้องท้องถิ่นที่ไม่อาจกู้คืนด้วยระยะแก้ไข
+> ปลาหมอคางดำ (*Sarotherodon melanotheron*) แพร่กระจายในประเทศไทยแล้ว 19 จังหวัด
+> นับตั้งแต่ปี พ.ศ. 2554 เป้าหมายของทุกฝ่ายคือการกำจัด แต่การกำจัดระดับประเทศไม่อาจ
+> ทำได้ เนื่องจากระบบคลองเชื่อมต่อกันและได้รับอิทธิพลของน้ำขึ้นน้ำลง ปลาชนิดนี้ทน
+> ความเค็มได้กว้าง และฟักไข่ในปากทำให้ลูกปลารอดสูง
 >
-> โครงงานนี้พัฒนาระบบสกัดและระบุตำแหน่งด้วยสถาปัตยกรรมผสมระหว่างแบบจำลองภาษากับ
-> การจับคู่เชิงกฎ โดยให้แบบจำลองภาษาขนาดใหญ่ที่กำกับด้วยโครงสร้างข้อมูลที่กำหนดไว้
-> ทำหน้าที่รายงานชื่อสถานที่ตามตัวอักษรเท่านั้น **ไม่ให้ระบุรหัสหน่วยการปกครองเอง**
-> แล้วให้ตัวจับคู่เชิงกฎซึ่งใช้ลำดับชั้นการปกครอง ตารางชื่อพ้อง และกฎเฉพาะสำหรับ
-> อำเภอเมือง เป็นผู้ระบุรหัส ทุกระเบียนต้องมีข้อความอ้างอิงจากต้นฉบับและถูกตรวจสอบ
-> ย้อนกลับตามตัวอักษร เพื่อควบคุมการกุข้อมูลของแบบจำลองภาษา
+> โครงงานนี้ตั้งคำถามเชิงชีววิทยาเชิงคำนวณว่า **การกำจัด ณ พื้นที่ใดจะให้ผลถาวร**
+> สมมติฐานคือ การกำจัดในพื้นที่ที่เชื่อมต่อกับแหล่งระบาดหนาแน่นจะได้ผลเพียงชั่วคราว
+> เพราะประชากรข้างเคียงกลับเข้ามาแทนที่ ส่วนพื้นที่ที่เชื่อมต่อน้อยจะให้ผลถาวร
+> ตัวแปรที่กำหนดคือ **แรงกดดันการรุกรานซ้ำ** ซึ่งคำนวณได้จากแบบจำลองเครือข่าย
+> การแพร่กระจาย แต่อ่านไม่ได้จากแผนที่การพบปลาในปัจจุบัน
 >
-> สมมติฐานที่ทดสอบคือ สถาปัตยกรรมผสมให้ความแม่นยำสูงกว่าการให้แบบจำลองภาษาระบุ
-> รหัสโดยตรง และความแตกต่างกระจุกตัวอยู่ในกรณีที่กำกวม การประเมินใช้ชุดข้อมูลที่
-> ติดป้ายด้วยมือประมาณ 400 รายการจากข้อความภาษาไทยจริง เปรียบเทียบระบบห้าแบบ
-> รายงานความแม่นยำแยกตามประเภทความกำกวม พร้อมทั้ง **อัตราการกุตำแหน่ง** ซึ่งวัดจาก
-> รายการที่คำตอบถูกต้องคือ "ระบุไม่ได้" ตัวชี้วัดนี้จำเป็น เพราะระบบที่ตอบทุกครั้ง
-> จะได้คะแนนดีในรายการที่ระบุได้ และสร้างตำแหน่งเท็จขึ้นมาในรายการที่เหลือ
+> การประมาณค่าแบบจำลองต้องใช้ข้อมูลมากกว่าการตรวจพบระดับจังหวัดเพียง 19 จุด จึงใช้
+> วิธีขุดข้อความจากวรรณกรรม (literature mining) สกัดระเบียนการพบที่ระบุวันเวลาและ
+> สถานที่จากข่าว ประกาศราชการ และโพสต์ในชุมชนออนไลน์ภาษาไทย ด้วยแบบจำลองภาษาขนาดใหญ่
+> ที่กำกับด้วยโครงสร้างข้อมูล ทุกระเบียนถูกตรวจสอบย้อนกลับกับต้นฉบับตามตัวอักษร และ
+> การระบุตำบลใช้การจับคู่เชิงกฎ มิใช่ให้แบบจำลองภาษาระบุเอง ความถูกต้องประเมินโดยให้
+> กระบวนการค้นพบการตรวจพบระดับจังหวัดที่มีบันทึกอยู่แล้วได้ด้วยตนเอง
 >
-> การประเมินปลายทางนำผลจากแต่ละระบบไปป้อนแบบจำลองเครือข่ายการแพร่กระจายของ
-> ปลาหมอคางดำ (*Sarotherodon melanotheron*) ซึ่งมีบันทึกการตรวจพบอย่างเป็นทางการ
-> เพียง 19 จังหวัด แล้ววัดว่าความแม่นยำในการระบุตำแหน่งส่งผลต่อการอนุมานเชิง
-> วิทยาศาสตร์ปลายทางมากน้อยเพียงใด เป็นการเชื่อมโยงข้อผิดพลาดของระบบประมวลผลภาษา
-> เข้ากับข้อสรุปที่นำไปใช้จริง
+> แบบจำลองเป็นแบบ discrete-time survival บนเครือข่ายสองชั้น เปรียบเทียบการแพร่กระจาย
+> ตามแหล่งน้ำกับการเคลื่อนย้ายโดยมนุษย์ ประเมินด้วยการทำนายจังหวัดถัดไปแบบนอกกลุ่ม
+> ตัวอย่าง พร้อมรายงานกำลังการจำแนกที่วัดจากข้อมูลจำลอง ผลลัพธ์คือลำดับพื้นที่ที่
+> การกำจัดคาดว่าจะให้ผลถาวร พร้อมการวิเคราะห์ว่าหน้าต่างของการกำจัดแบบถาวรปิดลงเมื่อ
+> เครือข่ายอิ่มตัวถึงระดับใด
 
 ## Abstract — proposal stage (English)
 
-> Extracting geolocated event records from low-resource-language text remains
-> poorly solved. Thai poses specific difficulties: no inter-word spacing;
-> subdistrict names that repeat across provinces, so the string alone is
-> insufficient; administrative prefixes written several ways; capital districts
-> recorded as เมือง<province> in official gazetteers but written as a bare
-> อ.เมือง in text; and colloquial place names no edit distance recovers.
+> Blackchin tilapia (*Sarotherodon melanotheron*) has spread to 19 Thai provinces
+> since 2011. Removal is the goal, but national eradication is not achievable: an
+> open, tidally connected canal network, a euryhaline species, and a mouthbrooder
+> with high juvenile survival.
 >
-> This project develops a hybrid neural-symbolic extraction and geolocation
-> system. A schema-constrained large language model reports place names
-> **verbatim and never resolves them to administrative codes**; a deterministic
-> matcher using administrative hierarchy, an alias table, and an explicit
-> capital-district rule performs resolution. Every record carries a source quote
-> verified character-for-character against the original, as a hallucination
-> control.
+> This project asks a computational-biology question: **where is removal
+> permanent?** The hypothesis is that clearing a site strongly connected to dense
+> invaded areas yields only temporary reduction, because neighbouring populations
+> refill it, whereas clearing a weakly connected site can be permanent. The
+> governing quantity is **reinvasion pressure** — computable from a fitted spread
+> network model, but not readable from a map of current occupancy.
 >
-> The hypothesis under test is that the hybrid architecture is more accurate
-> than asking the language model for the administrative code directly, and that
-> the difference is concentrated in ambiguous cases. Evaluation uses a
-> hand-labelled set of approximately 400 mentions drawn from real Thai text,
-> comparing five systems and reporting accuracy per ambiguity type together with
-> a **fabrication rate** — measured on items whose correct answer is "cannot be
-> resolved". That metric is necessary: a system that always answers scores well
-> on resolvable items and invents locations for the rest.
+> Fitting that model requires more than 19 province-level observations. The data
+> are therefore generated by literature mining: a schema-constrained large
+> language model extracts dated, place-named occurrence records from Thai news,
+> government bulletins, and community posts. Every record is verified
+> character-for-character against its source, and subdistrict assignment is
+> performed by deterministic matching rather than by the language model. Accuracy
+> is established by independently recovering the documented provincial detections.
 >
-> Extrinsic evaluation feeds each system's output into a spread network model
-> for the invasive blackchin tilapia (*Sarotherodon melanotheron*), whose
-> official record covers only 19 provinces, and measures how geolocation
-> accuracy propagates into downstream scientific inference — connecting NLP
-> error directly to applied conclusions.
+> The model is a discrete-time survival process over a two-layer network,
+> comparing waterway connectivity against human-mediated transport, evaluated by
+> rolling out-of-sample prediction of the next province invaded and reported with
+> an identifiability figure measured on simulated data. Outputs are a ranked list
+> of sites where removal is expected to be durable, together with an analysis of
+> the network saturation level at which the window for permanent removal closes.
 
-> **ให้ครูภาษาไทยตรวจก่อนส่ง** ศัพท์เทคนิคเป็นมาตรฐานแล้ว แต่ระดับภาษาอาจต้องปรับ
-> ตามที่ YSC คาดหวัง
->
-> **Have a Thai teacher review the Thai** before submitting.
+> **ให้ครูภาษาไทยตรวจก่อนส่ง** / **Have a Thai teacher review the Thai.**
 
 ---
 
@@ -184,13 +178,13 @@ say **where removal is permanent rather than maintenance.**
 
 ## คำสำคัญ / Keywords
 
-การประมวลผลภาษาธรรมชาติ; การระบุตำแหน่งจากข้อความ; ภาษาทรัพยากรจำกัด;
-สถาปัตยกรรมผสมเชิงประสาท-สัญลักษณ์; การแก้ความกำกวมของชื่อสถานที่;
-การควบคุมการกุข้อมูลของแบบจำลองภาษา; ชนิดพันธุ์ต่างถิ่นรุกราน
+ชีววิทยาเชิงคำนวณ; ระบาดวิทยาเชิงคำนวณ; ชนิดพันธุ์ต่างถิ่นรุกราน; แรงกดดันการรุกรานซ้ำ;
+แบบจำลองการอยู่รอดเชิงเวลาไม่ต่อเนื่อง; แบบจำลองเครือข่าย; การขุดข้อความจากวรรณกรรม;
+การประมวลผลภาษาธรรมชาติ
 
-natural language processing; toponym resolution; geoparsing; low-resource
-languages; neural-symbolic architecture; entity disambiguation; hallucination
-control; Thai; invasive species informatics
+computational biology; computational epidemiology; invasion dynamics; reinvasion
+pressure; discrete-time survival model; network model; literature mining; natural
+language processing; Thailand
 
 ## ข้อควรตรวจกับแบบฟอร์ม YSC
 

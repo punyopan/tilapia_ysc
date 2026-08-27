@@ -6,9 +6,10 @@ A hybrid neural-symbolic system for extracting and geolocating spatial event
 records from Thai-language text, evaluated on blackchin tilapia
 (*Sarotherodon melanotheron*, ปลาหมอคางดำ) spread reporting.
 
-> **YSC category: Computer Science.** The resolver is the contribution; the fish
-> is the evaluation domain. Read `docs/cs-track.md` first — it carries the
-> testable claim, the baselines, and what still has to be built.
+> **YSC: Computer Science → CSBI (Computational Biology and Bioinformatics).**
+> Literature mining generates the data; the spread and reinvasion model is the
+> contribution. See `docs/cs-subcategory.md` for why CSBI over CSAI or CSSD, and
+> `docs/cs-track.md` for the evaluation plan.
 
 ## The problem
 
@@ -66,7 +67,8 @@ src/tilapia/experiment.py      out-of-sample test + power check
 src/tilapia/allocate.py        risk map -> survey plan under a fixed budget
 src/tilapia/removal.py         where clearing fish stays cleared vs refills
 data/reference/                gazetteer + ground truth (you assemble these)
-docs/cs-track.md               how this wins in the CS category (read first)
+docs/cs-subcategory.md         which CS subcategory, and why (read first)
+docs/cs-track.md               evaluation plan for the resolver component
 docs/abstract.md               title and abstract, proposal + results versions
 docs/how-this-helps.md         what it changes in the real world, measured
 docs/removal.md                "isn't the real problem getting rid of them?"
