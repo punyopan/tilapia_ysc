@@ -81,3 +81,65 @@ have supported.
 
 That check is also the complete answer to "how do you know your model isn't just
 fitting noise?" — you tested it against a case where you knew the truth.
+
+---
+
+## Measured power, on synthetic data (2026-08)
+
+Ran `can_this_experiment_work()` on synthetic networks with deliberately
+discordant layers, planting a known human-transport signal. Six candidate models,
+three of which contain the human layer — so **chance is 0.5**, not zero.
+
+Individual cells were run at 10–15 replicates. At that size the estimates were
+badly unstable: three near-identical runs at 24 nodes returned layer recovery of
+**0.583, 0.700, and 0.933**. Any one of those quoted alone would have been
+misleading. So the cells are pooled:
+
+**Pooled across 6 cells, 66 replicates: layer recovery 0.682, 95% CI
+[0.562, 0.782].** The interval excludes 0.5, so the design does identify the
+generating mechanism above chance — modestly, but detectably.
+
+By resolution band:
+
+| nodes | layer recovery | 95% CI |
+|---|---|---|
+| 24 | 0.636 (14/22) | [0.43, 0.80] |
+| 50–60 | 0.727 (16/22) | [0.52, 0.87] |
+| 90–120 | 0.682 (15/22) | [0.47, 0.84] |
+
+All three overlap heavily. **Spatial resolution has no detectable effect on
+identifiability** in this simulation.
+
+Two process notes worth carrying into the writeup. First, the instability at
+n≈12 is itself the argument for the confidence intervals: without them, the
+single 0.933 run would have looked like a clean success and the single 0.583 run
+like a failed design. Second, pooling was decided *because* the cells disagreed,
+not to reach a nicer number — the pooled estimate is lower than the best
+individual cell, not higher.
+
+What *does* work, from the same test suite: the fitted coefficient recovers the
+right layer (β_human 2.84 vs β_water 0.51), and the reverse case behaves
+correctly (plant a water signal, the waterway model wins). So the estimator is
+sound; the **model-selection step** is what lacks power.
+
+### What this implies for the project
+
+Two conclusions, one negative and one actionable.
+
+**Negative:** identification is real but weak — roughly 68% against a 50%
+baseline — and pushing to finer spatial resolution does not improve it. A
+real-data claim of the form "the hybrid model wins, therefore human transport"
+must be reported with this power figure beside it. At 68% recovery, a single
+model comparison landing on the hybrid is suggestive, not conclusive, and
+saying so is the difference between a defensible result and an overclaim.
+
+**Actionable:** the discriminating information lives entirely in region pairs
+where the two layers disagree. Where the delta's water network and its trade
+network coincide, both hypotheses predict the same thing no matter how many
+nodes you add. So the lever is not resolution — it is **discordance**. Selecting
+or oversampling regions connected by water but not commerce, and vice versa,
+should raise power at any node count. `discordant_pairs()` counts them; the
+accompanying experiment tests whether recovery actually tracks that count.
+
+Run the power check with far more replicates before finalising — it is slow but
+free, and an overnight run turns these intervals into something you can defend.

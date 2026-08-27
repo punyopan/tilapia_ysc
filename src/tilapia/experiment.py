@@ -251,6 +251,12 @@ def can_this_experiment_work(
         if uses_generating_layer(winner):
             layer += 1
 
+    # What a coin-flip would score. Without this the recovery rates read far
+    # better than they are: if half the candidate models contain the human
+    # layer, picking at random already "recovers" it 50% of the time.
+    n_with_layer = sum(1 for s in MODELS if uses_generating_layer(s.name))
+    chance = n_with_layer / len(MODELS)
+
     return {
         "generating_model": truth_spec.name,
         "replicates": attempted,
@@ -263,8 +269,31 @@ def can_this_experiment_work(
         # project asks -- "did people move the fish" -- not "which of six
         # parameterisations is minimal".
         "layer_recovery_rate": round(layer / attempted, 3) if attempted else 0.0,
+        "layer_recovery_ci95": wilson_interval(layer, attempted),
+        "chance_baseline": round(chance, 3),
+        # The only number that means anything on its own. <=0 is no evidence
+        # the design can identify the mechanism at all.
+        "lift_over_chance": round((layer / attempted) - chance, 3) if attempted else 0.0,
         "winner_counts": dict(sorted(winners.items(), key=lambda kv: -kv[1])),
     }
+
+
+def wilson_interval(successes: int, trials: int, z: float = 1.96) -> tuple[float, float]:
+    """95% CI for a proportion.
+
+    Included because power checks are slow, so the temptation is to run 10 or 12
+    replicates and read the result as if it were precise. At n=12 a rate of 0.58
+    has a CI roughly [0.32, 0.81] -- wide enough to contain both "no signal" and
+    "strong signal". Report the interval, and do not compare two rates whose
+    intervals overlap.
+    """
+    if trials == 0:
+        return (0.0, 0.0)
+    p = successes / trials
+    denom = 1 + z**2 / trials
+    centre = (p + z**2 / (2 * trials)) / denom
+    margin = z * np.sqrt(p * (1 - p) / trials + z**2 / (4 * trials**2)) / denom
+    return (round(max(0.0, centre - margin), 3), round(min(1.0, centre + margin), 3))
 
 
 def resolution_scan(
