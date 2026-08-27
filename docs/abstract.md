@@ -9,32 +9,76 @@ holds a real measured number.
 
 ## Title
 
-**English (recommended)**
+### The convention
 
-> Did the Fish Swim? Testing Human-Mediated Against Hydrological Spread of the
-> Blackchin Tilapia (*Sarotherodon melanotheron*) in Thailand
+YSC titles are descriptive three-part constructions, not conference-style
+questions. A verified winning title from MWIT shows the shape:
 
-**Thai (recommended)**
+> การประยุกต์ใช้**แบบจำลองการเรียนรู้ของเครื่อง** **เพื่อ**คัดกรองและระบุ
+> สารประกอบศักยภาพสูง**สำหรับ**ยับยั้งเอนไซม์โปรติเอส NS2B/NS3 ของไวรัสเดงกี
 
-> ปลาว่ายมาเองหรือคนพามา: การทดสอบแบบจำลองการแพร่กระจายของปลาหมอคางดำ
-> (*Sarotherodon melanotheron*) ในประเทศไทย
+Structure: **[method] เพื่อ [what it does] สำหรับ/ของ [target domain]**. Method
+leads. Length is not a problem — precision is the point. So the title has to
+carry all three of: what is studied, how, and what it is for.
 
-The question form is deliberate. It states the falsifiable claim in the title,
-which is the strongest thing this project has and the thing most competing
-entries lack.
+### Recommended
 
-**Formal alternatives**, if your teacher or the submission form wants something
-drier:
+**Thai**
 
-> การจำแนกบทบาทของการเคลื่อนย้ายโดยมนุษย์และการแพร่กระจายตามแหล่งน้ำ
-> ต่อการรุกรานของปลาหมอคางดำในประเทศไทย
+> การพัฒนาแบบจำลองเครือข่ายการเคลื่อนย้ายโดยมนุษย์ ร่วมกับการสกัดข้อมูลจาก
+> ข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ เพื่อคาดการณ์การแพร่กระจายของ
+> ปลาหมอคางดำ และจัดลำดับพื้นที่เฝ้าระวังในระดับตำบล
 
-> Distinguishing Human Transport from Waterway Diffusion in the Invasion of
-> *Sarotherodon melanotheron* in Thailand
+**English**
 
-**Short project name** (repo, poster header, slide footer): **Kangdam** — what
-everyone already calls the fish, and it survives being said out loud in either
-language.
+> Development of a Human-Transport Network Model Combined with Thai-Language
+> Text Mining to Predict the Spread of Blackchin Tilapia (*Sarotherodon
+> melanotheron*) and Prioritise Subdistrict-Level Surveillance
+
+Slot by slot:
+
+| Slot | Thai | Carries |
+|---|---|---|
+| Method 1 | แบบจำลองเครือข่ายการเคลื่อนย้ายโดยมนุษย์ | the novel modelling claim |
+| Method 2 | การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ | the data-creation contribution |
+| Studied | การแพร่กระจายของปลาหมอคางดำ | the subject |
+| Solves | จัดลำดับพื้นที่เฝ้าระวังในระดับตำบล | the application |
+
+### Shorter, if the form caps the length
+
+> การสกัดข้อมูลจากข้อความภาษาไทยด้วยแบบจำลองภาษาขนาดใหญ่ ร่วมกับแบบจำลอง
+> เครือข่ายสองชั้น เพื่อจัดลำดับพื้นที่เฝ้าระวังการแพร่กระจายของปลาหมอคางดำ
+
+Drops "human transport" as an explicit phrase, which costs you the hypothesis in
+the title. Prefer the full version if you are allowed the characters.
+
+### Emphasis variants
+
+Lead with whichever contribution you want judged as primary — the title decides
+which category you land in and what the judges anchor on.
+
+*If the modelling is the centrepiece* (Environmental Science framing):
+
+> การพัฒนาแบบจำลองเครือข่ายสองชั้นเปรียบเทียบการแพร่กระจายตามแหล่งน้ำกับ
+> การเคลื่อนย้ายโดยมนุษย์ เพื่อคาดการณ์การรุกรานของปลาหมอคางดำในประเทศไทย
+
+*If the NLP pipeline is the centrepiece* (Computer Science framing):
+
+> การพัฒนาระบบสกัดข้อมูลการพบชนิดพันธุ์ต่างถิ่นจากข้อความภาษาไทย
+> ด้วยแบบจำลองภาษาขนาดใหญ่ เพื่อสร้างฐานข้อมูลการแพร่กระจายของปลาหมอคางดำ
+
+Pick one and stay consistent across the proposal, poster, and abstract.
+
+### Keep the question as a headline, not a title
+
+"ปลาว่ายมาเองหรือคนพามา?" — *Did the fish swim here, or did people bring it?* —
+is wrong for the submission form but right for the poster header, the opening
+line of your presentation, and the first slide. It states the falsifiable claim
+in seven words, which is what you want a judge to remember after walking away.
+Use it there; use the descriptive title on the form.
+
+**Short project name** (repo, slide footer): **Kangdam** — what everyone already
+calls the fish, and it survives being said out loud in either language.
 
 ---
 
@@ -158,3 +202,20 @@ prioritisation; Thailand
   therefore built" with "A text-mining pipeline was developed" throughout — but
   keep it consistent, and do not use it to obscure which parts you built
   yourself. Judges specifically ask that.
+
+---
+
+## Source for the title convention
+
+Pattern inferred from a verified YSC winning title from Mahidol Wittayanusorn
+School (MWIT): "การประยุกต์ใช้แบบจำลองการเรียนรู้ของเครื่อง เพื่อคัดกรองและระบุ
+สารประกอบศักยภาพสูงสำหรับยับยั้งเอนไซม์โปรติเอส NS2B/NS3 ของไวรัสเดงกี"
+— https://www.mwit.ac.th/html/news_680211/
+
+Only one title could be retrieved verbatim; NECTEC's project database
+(fic.nectec.or.th) and most Thai school sites were unreachable from where this
+was drafted. **Check a dozen more titles yourself** in your own category before
+finalising — NSTDA publishes finalist lists as PDFs at nstda.or.th/ysc, and the
+per-year project database at fic.nectec.or.th is the fuller source. If the
+convention in your category differs from the one example above, follow your
+category.
