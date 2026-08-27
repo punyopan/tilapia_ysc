@@ -1,0 +1,17 @@
+[project]
+name = "tilapia-spread"
+version = "0.1.0"
+description = "Reconstructing the Sarotherodon melanotheron invasion record in Thailand from Thai-language text"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=1.0",
+    "pydantic>=2.7",
+    "pandas>=2.0",
+    "rapidfuzz>=3.6",
+]
+
+[project.optional-dependencies]
+geo = ["geopandas>=0.14", "shapely>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

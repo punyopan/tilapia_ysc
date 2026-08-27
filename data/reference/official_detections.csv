@@ -1,0 +1,23 @@
+# GROUND TRUTH -- fill this in yourself from primary sources. Do not guess.
+#
+# This file is the entire validation basis of the project. Every number in the
+# results section is measured against it, so every row needs a citation you can
+# show a judge. One row per province, in the order it was officially confirmed.
+#
+# adm1_code       official province code, matching whichever gazetteer you load
+#                 (see README.md in this directory) -- this is the join key
+# adm1_name_th    Thai province name
+# detection_date  date of official confirmation. If only a month or year is
+#                 published, use the FIRST day of that period and record the
+#                 real precision in the `precision` column -- never silently
+#                 round a year to January 1st and then compute lead times in days
+# precision       day | month | year
+# source          citation specific enough to find again: DOF report number,
+#                 article URL + date, or meeting minutes reference
+#
+# A note on what this record actually is: these are *confirmation* dates, not
+# arrival dates, and confirmation speed changed as national attention grew. That
+# is a real limitation of the ground truth itself, not just of the pipeline --
+# state it in the report rather than letting a judge find it.
+adm1_code,adm1_name_th,detection_date,precision,source
+FILL,FILL,YYYY-MM-DD,day,FILL
