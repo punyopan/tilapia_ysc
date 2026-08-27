@@ -29,6 +29,7 @@ src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
 src/tilapia/validate.py        recall, lead time, precision, excess
 data/reference/                gazetteer + ground truth (you assemble these)
+docs/abstract.md               title and abstract, proposal + results versions
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
 tests/test_geocode.py          the Thai matching cases that actually break
