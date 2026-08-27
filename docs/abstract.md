@@ -102,6 +102,74 @@ CSSD และ CSAI เก็บไว้เป็นบันทึกใน `d
 
 ---
 
+## วัตถุประสงค์ของการวิจัย / Research objectives
+
+ทั้งสามข้อเรียงตามลำดับการทำงาน และแต่ละข้อมีเกณฑ์ที่วัดได้ว่าสำเร็จหรือไม่
+
+**๑. เพื่อสร้างและตรวจสอบความถูกต้องของชุดข้อมูลการพบปลาหมอคางดำระดับตำบล**
+โดยสกัดระเบียนที่ระบุวันเวลาและสถานที่จากข้อความภาษาไทยด้วยโมเดลภาษาขนาดใหญ่
+ที่กำกับด้วยโครงสร้างข้อมูล และระบุตำบลด้วยการจับคู่เชิงกฎ
+
+*เกณฑ์วัด:* จำนวนระเบียนและตำบลที่ครอบคลุม, สัดส่วนการตรวจพบระดับจังหวัดที่มีบันทึก
+อยู่แล้วซึ่งกระบวนการค้นพบได้เอง, ระยะเวลาที่แจ้งเตือนได้ก่อนการยืนยันอย่างเป็นทางการ
+และความแม่นยำจากการตรวจสอบด้วยมือ
+
+**๒. เพื่อประมาณค่าและเปรียบเทียบแบบจำลองเครือข่ายการแพร่กระจายสองชั้น**
+ระหว่างการแพร่กระจายตามแหล่งน้ำกับการเคลื่อนย้ายโดยมนุษย์ผ่านการเพาะเลี้ยงสัตว์น้ำ
+
+*เกณฑ์วัด:* ความแม่นยำในการทำนายจังหวัดถัดไปแบบนอกกลุ่มตัวอย่าง เทียบกับแบบจำลอง
+พื้นฐาน, ค่าสหสัมพันธ์ระหว่างสองชั้นเครือข่ายซึ่งกำหนดว่าการเปรียบเทียบจำแนกได้เพียงใด
+และกำลังการจำแนกที่วัดจากข้อมูลจำลอง
+
+**๓. เพื่อคำนวณแรงกดดันการรุกรานซ้ำรายพื้นที่ และจัดลำดับตำบลที่การกำจัดให้ผลถาวร**
+พร้อมระบุระดับความอิ่มตัวของเครือข่ายที่ทำให้การกำจัดแบบถาวรไม่เป็นไปได้อีก
+
+*เกณฑ์วัด:* จำนวนตำบลที่จัดลำดับได้, สัดส่วนพื้นที่ระบาดปัจจุบันที่คาดว่าจะมีปลากลับ
+เข้ามาภายในหนึ่งฤดูกาล และระดับความอิ่มตัวที่หน้าต่างของการกำจัดแบบถาวรปิดลง
+
+### ข้อสังเกตเรื่องความเป็นอิสระของวัตถุประสงค์
+
+วัตถุประสงค์ข้อ ๑ **ไม่ขึ้นกับ** ผลของข้อ ๒ เลย ชุดข้อมูลมีคุณค่าในตัวเองแม้การ
+เปรียบเทียบแบบจำลองจะไม่ชี้ขาด
+
+ข้อ ๓ ต้องใช้แบบจำลองที่ประมาณค่าแล้ว แต่ **ไม่ต้องรอให้การเปรียบเทียบในข้อ ๒
+ชี้ขาด** — แรงกดดันการรุกรานซ้ำคำนวณได้จากแบบจำลองผสมที่ประมาณค่าแล้ว แม้จะยัง
+แยกไม่ได้ว่าชั้นใดมีน้ำหนักมากกว่า
+
+โครงสร้างนี้ตั้งใจให้เป็นเช่นนี้ หากข้อ ๒ ให้ผลว่าจำแนกได้ไม่ชัด (ซึ่งเป็นไปได้
+เพราะเครือข่ายแหล่งน้ำและเครือข่ายการค้าในเขตดินดอนสามเหลี่ยมปากแม่น้ำมีความ
+สัมพันธ์กันสูง) ข้อ ๑ และ ๓ ยังคงให้ผลลัพธ์ที่รายงานได้
+
+---
+
+## Research objectives (English)
+
+**1. Build and validate a subdistrict-level occurrence dataset** for the species,
+mined from Thai-language text with a schema-constrained language model and
+geocoded by deterministic matching.
+*Measured by:* records and subdistricts covered; share of documented provincial
+detections independently recovered; lead time ahead of official confirmation;
+precision from a hand-checked sample.
+
+**2. Fit and compare a two-layer spread network model**, waterway connectivity
+against aquaculture-mediated human transport.
+*Measured by:* out-of-sample accuracy predicting the next province invaded
+against baselines; correlation between the two layers, which bounds how far the
+comparison can identify anything; identifiability measured on simulated data.
+
+**3. Compute per-site reinvasion pressure and rank subdistricts where removal is
+durable**, and identify the network saturation level beyond which permanent
+removal is no longer achievable.
+*Measured by:* subdistricts ranked; share of currently invaded area expected to
+refill within one season; the saturation threshold at which the window closes.
+
+**On independence.** Objective 1 does not depend on objective 2 at all, and
+objective 3 needs only a *fitted* model, not a decisive comparison. That is
+deliberate: if the two layers turn out highly correlated in the real delta — which
+is plausible — objectives 1 and 3 still produce reportable results.
+
+---
+
 ## บทคัดย่อ — ฉบับข้อเสนอโครงงาน (ภาษาไทย)
 
 > ปลาหมอคางดำ (*Sarotherodon melanotheron*) แพร่กระจายในประเทศไทยแล้ว 19 จังหวัด
