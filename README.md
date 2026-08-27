@@ -1,34 +1,52 @@
-# Kangdam — where removing blackchin tilapia actually lasts
+# Kangdam — Thai geographic entity resolution for invasive species reporting
 
-**กำจัดตรงไหนถึงจะอยู่ถาวร**
+**ต.บางแก้ว อยู่จังหวัดไหน**
 
-Distinguishing places where clearing *Sarotherodon melanotheron* (ปลาหมอคางดำ)
-is permanent from places where it is recurring maintenance — by mining
-Thai-language text for occurrence records, then fitting a two-layer spread model
-to them.
+A hybrid neural-symbolic system for extracting and geolocating spatial event
+records from Thai-language text, evaluated on blackchin tilapia
+(*Sarotherodon melanotheron*, ปลาหมอคางดำ) spread reporting.
 
-## Why
+> **YSC category: Computer Science.** The resolver is the contribution; the fish
+> is the evaluation domain. Read `docs/cs-track.md` first — it carries the
+> testable claim, the baselines, and what still has to be built.
 
-Removal is the goal. National eradication is not achievable: an open, tidally
-connected canal network across many provinces, a euryhaline species, a
-mouthbrooder with high juvenile survival. Documented eradications of established
-fish happen in closed systems, or very shortly after arrival.
+## The problem
 
-But removal is **two problems, not one**. Clearing a site inside a dense,
-well-connected invaded network buys a temporary density drop — neighbours refill
-it. Clearing a weakly connected site can be permanent. The quantity separating
-them is *reinvasion pressure*, which a spread model computes and a map of current
-occupancy cannot.
+Extracting geolocated records from low-resource-language text is poorly solved,
+and Thai is specifically hard:
 
-Fitting that model needs more than the ~19 province-level detections on record —
-too few, spatially autocorrelated, and time-ordered. So the pipeline mines Thai
-news, government bulletins, and community posts for dated, place-named
-occurrences, and proves the result trustworthy by independently recovering the
-official 19 and measuring how much *earlier* it would have flagged each.
+| | why standard methods fail |
+|---|---|
+| no inter-word spacing | `ต.บางแก้ว` / `ตำบลบางแก้ว` / `ตำบล บางแก้ว` are one place, and none string-match |
+| name collision | many provinces have a `ต.บางแก้ว`; the string alone cannot resolve it |
+| `อ.เมือง` | gazetteers write `เมือง<province>`, text writes a bare `อ.เมือง` — neither exact nor fuzzy matching connects them |
+| colloquial aliases | `แม่กลอง` for สมุทรสงคราม; no edit distance recovers it |
+
+## The claim being tested
+
+The architecture is hybrid: **the language model reports place names verbatim
+and never resolves them**; a deterministic gazetteer matcher does resolution.
+The obvious alternative is to ask the model for the administrative code
+directly.
+
+> **H0** — asking the model directly is as accurate as the hybrid pipeline.
+> **H1** — the hybrid is more accurate, and the gap concentrates in ambiguous cases.
+
+Measured by `benchmark.py` against five systems, per ambiguity type, with a
+**fabrication rate** on items whose correct answer is *"cannot be resolved"* — a
+system that always answers scores well on resolvable items and invents locations
+for the rest.
+
+## Extrinsic evaluation
+
+Outputs feed a two-layer spread model for the species, whose official record
+covers only ~19 provinces. This measures how geolocation error propagates into
+downstream scientific inference — connecting NLP accuracy to applied conclusions,
+which most extraction work cannot do.
 
 ```
-Thai text ──▶ occurrence records ──▶ two-layer spread model ──▶ where removal lasts
-              (validated vs the 19)    (water vs human transport)   + survey priority
+Thai text ──▶ LLM reports names ──▶ deterministic resolver ──▶ spread model
+              (schema + grounding)   (hierarchy, aliases)      (extrinsic eval)
 ```
 
 ## Layout
@@ -41,19 +59,21 @@ src/tilapia/extract.py         documents -> records via Claude (batch + single)
 src/tilapia/providers.py       provider-agnostic extraction (Anthropic, DeepSeek)
 src/tilapia/bakeoff.py         compare providers on the dev set, mostly for free
 src/tilapia/geocode.py         Thai place names -> official admin units
+src/tilapia/benchmark.py       EVALUATION HARNESS — the CS contribution
 src/tilapia/validate.py        recall, lead time, precision, excess
 src/tilapia/spread.py          the two-layer model: water vs human transport
 src/tilapia/experiment.py      out-of-sample test + power check
 src/tilapia/allocate.py        risk map -> survey plan under a fixed budget
 src/tilapia/removal.py         where clearing fish stays cleared vs refills
 data/reference/                gazetteer + ground truth (you assemble these)
+docs/cs-track.md               how this wins in the CS category (read first)
 docs/abstract.md               title and abstract, proposal + results versions
 docs/how-this-helps.md         what it changes in the real world, measured
 docs/removal.md                "isn't the real problem getting rid of them?"
 docs/why-this-is-science.md    the "isn't this just a map?" answer, with measured power
 docs/pipeline.md               design rationale and known limitations
 docs/compute.md                what hardware this needs (spoiler: a laptop)
-tests/                         5 suites — run them before trusting anything
+tests/                         6 suites — run them before trusting anything
 ```
 
 ## Setup
@@ -97,8 +117,11 @@ not eight times.
 
 ## Before you run anything
 
-Two files in `data/reference/` are yours to assemble, and the project is inert
-without them:
+**The one thing that gates the CS result: a hand-labelled test set of ~400 real
+Thai place mentions.** Without it there is no measured contribution, only an
+assertion. Labelling protocol and ambiguity taxonomy are in `docs/cs-track.md`.
+
+Two files in `data/reference/` are also yours to assemble:
 
 - **`gazetteer.csv`** — Thai administrative units with codes. Sources in
   `data/reference/README.md`. Keep the codes; they join everything downstream.
@@ -112,6 +135,9 @@ Method built and tested end to end on synthetic data. **No corpus collected, no
 ground truth entered, no real results.** What is verified so far:
 
 - Thai place-name resolution, including subdistrict collision and bare อ.เมือง
+- the benchmark harness: full resolver beats exact-match and greedy-fuzzy
+  baselines on synthetic labels, with the gap in the targeted ambiguity types,
+  and ablating context or aliases measurably hurts
 - the spread model recovers a planted signal, in both directions
 - identifiability measured at 0.682 [0.562, 0.782] against a 0.5 baseline —
   real but weak, and *not* improved by finer spatial resolution
@@ -123,6 +149,7 @@ and the full model beats a trivial assets-only heuristic by only ~1.06x. Nearly
 all the value is in not defaulting to the worst-affected areas.
 
 ```
+python tests/test_benchmark.py   #  7/7   <- the CS contribution
 python tests/test_geocode.py     # 10/10
 python tests/test_bakeoff.py     #  7/7
 python tests/test_allocate.py    #  7/7
