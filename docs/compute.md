@@ -33,36 +33,62 @@ This is the budget line that matters, so estimate it before committing.
 Rough arithmetic for a 5,000-document corpus, Thai news articles averaging
 ~3,000 input tokens each after the cached system prompt, ~800 output tokens each:
 
-```
-input     5,000 × 3,000  = 15M tokens
-output    5,000 ×   800  =  4M tokens
-```
+Run `extract.estimate_cost()` before paying for anything — it measures real
+input tokens with `count_tokens` on a sample of your own documents. Thai
+tokenises more heavily than English, so do not estimate from character counts.
 
-At Claude Opus 5 list rates ($5/M input, $25/M output) that is ~$175 —
-and both levers below apply on top of each other:
+The pipeline's defaults are set for a student budget. Five levers, and they
+multiply:
 
-- **Batch API: 50% off.** Nothing about this pipeline is latency-sensitive, so
-  there is no reason to pay interactive rates. `extract.submit_batch()` is the
-  default path for this reason.
-- **Prompt caching on the system prompt.** It is long and identical across every
-  document; caching it removes most of the per-call input cost.
+**1. Screen before the API sees anything (free).** `prefilter.py` drops documents
+that cannot contain a located record — wrong species, or no place reference at
+all. This is free and it multiplies with every lever below: halving the corpus
+halves the bill under any model. Read 50 rejected documents once
+(`screen_recall_check`) to confirm it is not discarding real records.
 
-Realistically that lands somewhere near **$50–90 for a full corpus run**. Re-do
-this arithmetic with your real corpus size and token counts before you start —
-`client.messages.count_tokens` gives exact numbers, and Thai tokenises more
-heavily than English so do not eyeball it from character counts.
+**2. Iterate on a dev set, not the corpus.** Prompt work needs ~150 documents,
+not 5,000. Run the full corpus once in the middle and once at the end. This is
+the largest single saving and it is purely a workflow choice.
 
-Budget for **three or four full runs**, not one. You will change the prompt after
-reading the first hand-labelled sample, and each prompt version is a different
-corpus that has to be regenerated. That iteration is the project working
-correctly, not overspending.
+**3. Batch API: 50% off.** Nothing here is latency-sensitive. `submit_batch()`
+is the default path for this reason.
 
-If cost binds harder than expected, the honest lever is model choice: a smaller
-model on the same prompt costs a fraction. That is your call to make, not a
-default to assume — and if you do switch, re-run the hand-labelled precision
-sample on the new model rather than carrying the old accuracy number over. A
-cheaper extraction that quietly loses the ambiguous-species distinction would
-cost you more in validity than it saves in baht.
+**4. Cache the system prompt.** Long, and identical across every call.
+
+**5. Low effort, and the bulk model.** This is mechanical reading against a
+strict schema, not a reasoning problem. High effort spends output tokens — the
+expensive side, 5× input — deliberating over a task the schema has already
+constrained. `BULK_MODEL` defaults to Haiku 4.5 for the same reason: structured
+extraction against a strict schema is among the most model-robust tasks there
+is, and the prompt and schema are doing the real work.
+
+That last one is a measurement, not an assumption. Run your 150-document dev set
+through both `BULK_MODEL` and `ADJUDICATION_MODEL`, compare against your
+hand-labels, and keep the cheap one only if it holds up. The specific thing to
+check is whether it still separates `named_explicit` from `named_ambiguous` on
+bare ปลาหมอ — that distinction is the most delicate judgement in the prompt and
+the first thing a weaker model would flatten. A cheaper extraction that silently
+loses it costs more in validity than it saves in baht.
+
+### What that actually comes to
+
+For ~4,000 scraped documents reducing to ~1,500 after screening, ~3,000 input
+tokens each, ~400 output tokens at low effort:
+
+| | |
+|---|---|
+| Dev-set iteration (150 docs × ~8 prompt versions, synchronous) | ~$6 |
+| Reference pass on the dev set with Opus 5, to validate the bulk model | ~$4 |
+| Two full corpus runs on Haiku 4.5, batched | ~$8 |
+| **Total** | **~$18** |
+
+Running the *entire* corpus on Opus 5 instead, still screened and batched at low
+effort, is roughly $19 per run — so even the expensive version lands near $45,
+not the hundreds it would cost with none of the levers applied.
+
+Before paying at all, check what you already have: YSC is run by NECTEC and
+provides resources to finalists, and Anthropic runs credit programmes for
+students and researchers. Both are worth an email before you spend anything.
 
 ## When an allocation *would* help
 

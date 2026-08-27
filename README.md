@@ -22,6 +22,7 @@ how much *earlier* it would have flagged each province.
 ```
 prompts/extraction_th.md       the extraction prompt (versioned — it defines the corpus)
 src/tilapia/schema.py          record schemas and the distinctions that matter
+src/tilapia/prefilter.py       free keyword screen — runs before any API call
 src/tilapia/extract.py         documents -> records via Claude (batch + single)
 src/tilapia/geocode.py         Thai place names -> official admin units
 src/tilapia/validate.py        recall, lead time, precision, excess
@@ -43,11 +44,16 @@ python tests/test_geocode.py        # 10/10 expected
 
 ```python
 import anthropic
-from tilapia.extract import SourceDocument, submit_batch, await_batch, collect_batch
+from tilapia.prefilter import apply_screen
+from tilapia.extract import estimate_cost, submit_batch, await_batch, collect_batch
 from tilapia.geocode import Gazetteer
 from tilapia.validate import eligible_records, evaluate_recall, summarise
 
 client = anthropic.Anthropic()
+
+# 0. screen for free, then price the run before paying for it
+kept, rejected = apply_screen(raw_documents)
+print(estimate_cost(client, documents))
 
 # 1. extract (batch: 50% cost, nothing here is latency-sensitive)
 batch_id = submit_batch(client, documents)
@@ -60,6 +66,10 @@ gaz = Gazetteer.from_csv("data/reference/gazetteer.csv")
 # 3. validate against the official record
 print(summarise(evaluate_recall(eligible_records(records), truth)))
 ```
+
+Costs about **$18 end to end** — see `docs/compute.md` for the breakdown and the
+levers. Iterate the prompt on a ~150-document dev set; run the full corpus twice,
+not eight times.
 
 ## Before you run anything
 
